@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en-us" suppresshydrationwarning>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metric Insights Case Study | Andrii Plakhotin</title>
+<meta name="description" content="Leading design for an enterprise BI portal used by 100K+ users across 35+ global organizations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme=dark]{
+  color-scheme:dark;
+  --color-bg-primary:#14150d;
+  --color-bg-secondary:#1c1e16;
+  --color-bg-tertiary:#232620;
+  --color-bg-surface:rgba(255,255,255,0.03);
+  --color-bg-surface-hover:rgba(255,255,255,0.06);
+  --color-bg-elevated:#2c3130;
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#F4A070;
+  --color-text-primary:#e8e3d8;
+  --color-text-secondary:#a8a398;
+  --color-text-tertiary:#6e6b63;
+  --color-text-inverse:#14150d;
+  --color-border:rgba(255,255,255,0.08);
+  --color-border-hover:rgba(255,255,255,0.15);
+  --color-success:#8a9e8f;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.5);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.6);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --color-bg-primary:#f2f0e8;
+  --color-bg-secondary:#f9f7f1;
+  --color-bg-tertiary:#e8e5dc;
+  --color-bg-surface:rgba(0,0,0,0.025);
+  --color-bg-surface-hover:rgba(0,0,0,0.05);
+  --color-bg-elevated:#fdfcf9;
+  --color-accent-warm:#1a1a14;
+  --color-accent-warm-hover:#2e2e20;
+  --color-text-primary:#1a1b14;
+  --color-text-secondary:#524f45;
+  --color-text-tertiary:#7a7670;
+  --color-text-inverse:#f9f7f1;
+  --color-border:rgba(0,0,0,0.08);
+  --color-border-hover:rgba(0,0,0,0.15);
+  --color-success:#5e8464;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.09);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.11);
+}
+:root{
+  --font:'Inter',system-ui,sans-serif;
+  --font-mono:'Inter',system-ui,sans-serif;
+  --nav-height:72px;
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
+  --duration-fast:150ms;
+  --duration-slower:800ms;
+  --text-xs:clamp(0.7rem,0.65rem + 0.2vw,0.8rem);
+  --text-sm:clamp(0.8rem,0.75rem + 0.25vw,0.9rem);
+  --text-base:clamp(0.9rem,0.85rem + 0.4vw,1.0625rem);
+  --text-lg:clamp(1rem,0.9rem + 0.5vw,1.2rem);
+  --text-xl:clamp(1.2rem,1rem + 0.8vw,1.5rem);
+  --text-2xl:clamp(1.5rem,1.2rem + 1.2vw,2rem);
+  --text-3xl:clamp(2rem,1.5rem + 2vw,3rem);
+  --text-4xl:clamp(2.5rem,1.8rem + 3vw,4rem);
+  --weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+  --leading-tight:1.1;--leading-snug:1.25;--leading-normal:1.5;--leading-relaxed:1.7;
+  --tracking-wide:0.05em;--tracking-wider:0.1em;
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+  --radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-xl:32px;--radius-full:9999px;
+}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font);font-size:var(--text-base);line-height:var(--leading-normal);color:var(--color-text-primary);background:var(--color-bg-primary);transition:background .5s,color .5s;display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ── HEADER: LOGO + NAV ── */
+.home-logo{position:fixed;top:28px;left:40px;z-index:1000;display:flex;align-items:center;padding:12px 20px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.home-logo:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar__logo-svg{height:32px;width:auto;color:var(--color-text-primary)}
+.nav-cluster{position:fixed;top:28px;right:28px;z-index:1000;display:flex;align-items:center;gap:10px}
+.navbar-pill{position:static;display:flex;align-items:center;padding:12px 20px 12px 12px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast)}
+.navbar-pill:hover{border-color:var(--color-border-hover)}
+.navbar-pill__links{display:flex;align-items:center;gap:20px}
+.navbar-pill__link{font-size:14px;font-weight:500;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;transition:color var(--duration-fast)}
+.navbar-pill__link:hover{color:var(--color-text-primary)}
+.navbar-pill__contact{font-size:14px;font-weight:600;color:var(--color-text-inverse);background:var(--color-accent-warm);padding:8px 16px;border-radius:9999px;letter-spacing:0.05em;text-transform:uppercase;transition:background var(--duration-fast),transform var(--duration-fast)}
+.navbar-pill__contact:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9999px;background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text-secondary);cursor:pointer;transition:border-color var(--duration-fast),background var(--duration-fast),color var(--duration-fast)}
+.theme-toggle:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);color:var(--color-text-primary)}
+.theme-toggle__icon{width:18px;height:18px}
+.theme-toggle__icon--sun{display:block}
+.theme-toggle__icon--moon{display:none}
+[data-theme=light] .theme-toggle__icon--sun{display:none}
+[data-theme=light] .theme-toggle__icon--moon{display:block}
+
+/* ── LAYOUT ── */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px}
+main{padding-top:var(--nav-height);flex:1}
+
+/* ── PROJECT DETAIL HEADER ── */
+.project-detail__header{padding:var(--space-16) 0 var(--space-10)}
+.project-detail__category{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-accent-warm);text-transform:uppercase;letter-spacing:var(--tracking-wider);margin-bottom:var(--space-4)}
+.project-detail__title{font-family:var(--font);font-size:var(--text-4xl);font-weight:var(--weight-bold);line-height:var(--leading-tight);color:var(--color-text-primary);margin-bottom:var(--space-4)}
+.project-detail__tagline{font-size:var(--text-xl);color:var(--color-text-secondary);margin-bottom:var(--space-8);line-height:var(--leading-relaxed)}
+.project-detail__meta{display:flex;gap:var(--space-8);padding:var(--space-6) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);flex-wrap:wrap}
+.project-detail__meta-item{display:flex;flex-direction:column;gap:var(--space-1)}
+.project-detail__meta-label{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wider)}
+.project-detail__meta-value{font-size:var(--text-sm);color:var(--color-text-primary);font-weight:var(--weight-medium)}
+
+/* ── TAGS ── */
+.project-card__tags{display:flex;flex-wrap:wrap;gap:var(--space-2);padding:var(--space-8) 0 0}
+.project-card__tag{font-size:var(--text-xs);color:var(--color-text-tertiary);background:var(--color-bg-surface);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);border:1px solid var(--color-border);transition:border-color var(--duration-fast),color var(--duration-fast)}
+.project-card__tag:hover{border-color:var(--color-border-hover);color:var(--color-text-primary)}
+
+/* ── ARTICLE CONTENT ── */
+.project-detail__content{max-width:800px;margin:var(--space-12) auto;font-size:var(--text-lg);color:var(--color-text-secondary);line-height:var(--leading-relaxed);overflow:visible}
+.project-detail__content h2{font-family:var(--font);font-size:var(--text-2xl);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin:var(--space-10) 0 var(--space-4)}
+.project-detail__content p+p{margin-top:var(--space-4)}
+.project-detail__content ul,.project-detail__content ol{list-style:disc;padding-left:var(--space-6);margin:var(--space-4) 0}
+.project-detail__content li{margin-bottom:var(--space-2)}
+.project-detail__content strong{color:var(--color-text-primary);font-weight:var(--weight-semibold)}
+.project-detail__content hr{border:none;border-top:1px solid var(--color-border);margin:var(--space-10) 0;opacity:0;transform:scaleX(0);transform-origin:left;transition:opacity .6s var(--ease-out-expo),transform .8s var(--ease-out-expo)}
+.project-detail__content hr.visible{opacity:1;transform:scaleX(1)}
+
+/* ── OVERVIEW META ── */
+.overview-meta{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-8) 0;padding:var(--space-6) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+.overview-meta .meta-item{display:flex;flex-direction:column;gap:4px}
+.overview-meta .meta-label{font-size:var(--text-sm);font-weight:var(--weight-semibold);text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary);opacity:.7}
+.overview-meta .meta-value{font-size:var(--text-base);color:var(--color-text-primary);line-height:var(--leading-relaxed)}
+
+/* ── FIGURE / IMAGE BLOCKS (bleed treatment like stanstef) ── */
+.project-detail__content figure{
+  display:block;
+  width:calc(100% + 200px);
+  max-width:calc(100vw - 80px);
+  margin-left:-100px;
+  border-radius:16px;
+  margin-top:40px;
+  margin-bottom:40px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo);
+}
+.project-detail__content figure.visible{opacity:1;transform:translateY(0)}
+.project-detail__content figure svg,.project-detail__content figure .fig-inner{display:block;width:100%}
+
+/* ── IMAGE GRID ── */
+.image-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  width:calc(100% + 200px);
+  max-width:calc(100vw - 80px);
+  margin-left:-100px;
+  margin-top:40px;
+  margin-bottom:40px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo);
+}
+.image-grid.visible{opacity:1;transform:translateY(0)}
+.image-grid figure{width:100%;margin:0;border-radius:12px;opacity:1;transform:none;transition:none}
+
+/* ── STATS GRID (Outcomes) ── */
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-border);border:1px solid var(--color-border);border-radius:16px;overflow:hidden;margin:var(--space-8) 0}
+.outcome-cell{padding:var(--space-8);background:var(--color-bg-secondary)}
+.outcome-number{font-size:clamp(48px,6vw,72px);font-weight:800;letter-spacing:-0.04em;color:var(--color-text-primary);line-height:1;margin-bottom:var(--space-2)}
+.outcome-label{font-size:var(--text-sm);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
+.outcome-desc{font-size:var(--text-sm);color:var(--color-text-tertiary);line-height:var(--leading-relaxed)}
+
+/* ── USER GROUPS GRID ── */
+.users-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-8) 0}
+.user-card{padding:var(--space-6);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+.user-card__name{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
+.user-card__desc{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:var(--leading-relaxed)}
+
+/* ── CHALLENGES GRID ── */
+.challenges-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-6) 0}
+.challenge-card{padding:var(--space-6);border-top:2px solid var(--color-accent-warm)}
+.challenge-card__name{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-3)}
+.challenge-card__desc{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:var(--leading-relaxed)}
+
+/* ── PROCESS STEPS ── */
+.process-steps{display:flex;flex-direction:column;gap:0;margin:var(--space-6) 0}
+.process-step{display:grid;grid-template-columns:160px 1fr;gap:var(--space-8);padding:var(--space-6) 0;border-bottom:1px solid var(--color-border)}
+.process-step:first-child{border-top:1px solid var(--color-border)}
+.process-step__num{font-size:var(--text-xs);font-weight:var(--weight-semibold);color:var(--color-text-tertiary);letter-spacing:var(--tracking-wider);text-transform:uppercase;padding-top:4px}
+.process-step__text{font-size:var(--text-base);color:var(--color-text-secondary);line-height:var(--leading-relaxed)}
+.process-step__title{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
+
+/* ── PROJECT NAV ── */
+.project-detail__nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);padding:var(--space-12) 0;border-top:1px solid var(--color-border)}
+.project-detail__nav-link{padding:var(--space-6);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:border-color var(--duration-fast),transform var(--duration-fast)}
+.project-detail__nav-link:hover{border-color:var(--color-border-hover);transform:translateY(-2px)}
+.project-detail__nav-label{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wider);margin-bottom:var(--space-2);display:block}
+.project-detail__nav-title{font-family:var(--font);font-size:var(--text-lg);font-weight:var(--weight-semibold);color:var(--color-text-primary)}
+.project-detail__nav-link--next{text-align:right}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out-expo),transform .7s var(--ease-out-expo)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:80ms}
+.reveal-delay-2{transition-delay:160ms}
+
+/* ── PAGE TRANSITION ── */
+@keyframes slide-in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slide-out{from{opacity:1}to{opacity:0;transform:translateX(-20px)}}
+main{animation:slide-in .5s cubic-bezier(.16,1,.3,1) both}
+body.page-exiting main{animation:slide-out .3s ease forwards}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .project-detail__content figure,.image-grid{width:100%;margin-left:0;max-width:100%}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .home-logo{top:12px;left:20px;padding:8px 14px}
+  .nav-cluster{top:12px;right:16px}
+  .navbar-pill{padding:8px 12px 8px 8px}
+  .navbar-pill__links{gap:12px}
+  .navbar-pill__link{display:none}
+  .navbar-pill__contact{font-size:12px;padding:6px 12px}
+  .theme-toggle{width:34px;height:34px}
+  .project-detail__header{padding:var(--space-8) 0 var(--space-6)}
+  .project-detail__content{margin:var(--space-8) auto;font-size:var(--text-base)}
+  .project-detail__content h2{font-size:var(--text-xl);margin:var(--space-8) 0 var(--space-3)}
+  .overview-meta{grid-template-columns:1fr;gap:var(--space-4)}
+  .users-grid{grid-template-columns:1fr}
+  .challenges-grid{grid-template-columns:1fr}
+  .outcomes-grid{grid-template-columns:1fr}
+  .image-grid{grid-template-columns:1fr}
+  .process-step{grid-template-columns:1fr;gap:var(--space-2)}
+  .project-detail__nav{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .home-logo{top:10px;left:16px}
+  .nav-cluster{top:10px;right:12px}
+}
+</style>
+<script>(function(){try{var e,t,n,s=window.innerWidth<=767;s?e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":(e=localStorage.getItem("portfolio-theme"),e||(t=new Date,n=t.getHours()+t.getMinutes()/60,e=n>=7.5&&n<18?"light":"dark")),document.documentElement.setAttribute("data-theme",e)}catch{document.documentElement.setAttribute("data-theme","dark")}})()</script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh">
+
+<!-- HOME LOGO -->
+<a href="index.html" class="home-logo" aria-label="Home">
+  <svg class="navbar__logo-svg" viewBox="0 0 127 95" fill="none" aria-hidden="true">
+    <path d="M 6 88 L 30 7 M 54 88 L 30 7 M 16 56 L 44 56" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 68 88 L 68 7 M 68 7 C 68 7 114 7 114 33 C 114 57 68 52 68 52" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- NAV CLUSTER -->
+<div class="nav-cluster">
+  <nav class="navbar-pill" aria-label="Main navigation">
+    <div class="navbar-pill__links">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+      <a href="about.html" class="navbar-pill__link">About me</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="navbar-pill__contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<main style="padding-top:var(--nav-height);flex:1">
+<article id="project-content">
+<div class="container">
+
+  <!-- ── HEADER ── -->
+  <div class="project-detail__header reveal">
+    <p class="project-detail__category">BI Platform / SaaS</p>
+    <h1 class="project-detail__title">Metric Insights:<br>Overview Case Study</h1>
+    <p class="project-detail__tagline">Leading design for an enterprise BI portal used by 100K+ users across 35+ global organizations</p>
+    <div class="project-detail__meta">
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Client</span>
+        <span class="project-detail__meta-value">Metric Insights Inc.</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Role</span>
+        <span class="project-detail__meta-value">Sr. Product Designer + Feature Owner</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Location</span>
+        <span class="project-detail__meta-value">San Francisco (Remote)</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Year</span>
+        <span class="project-detail__meta-value">2022 — Present</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAGS ── -->
+  <div class="project-card__tags reveal reveal-delay-1">
+    <span class="project-card__tag">Product Design</span>
+    <span class="project-card__tag">Design Strategy</span>
+    <span class="project-card__tag">Leadership</span>
+    <span class="project-card__tag">Feature Ownership</span>
+    <span class="project-card__tag">Design Systems</span>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="project-detail__content">
+
+    <!-- HERO IMAGE -->
+    <figure>
+      <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" style="background:#dde8f4;display:block;width:100%;height:auto">
+        <!-- Toolbar -->
+        <rect width="1000" height="44" fill="#1c3a5e"/>
+        <rect x="10" y="12" width="18" height="18" rx="3" fill="rgba(255,255,255,0.25)"/>
+        <rect x="36" y="16" width="80" height="10" rx="3" fill="rgba(255,255,255,0.2)"/>
+        <rect x="124" y="18" width="1" height="6" fill="rgba(255,255,255,0.15)"/>
+        <rect x="133" y="14" width="180" height="14" rx="4" fill="rgba(255,255,255,0.55)"/>
+        <text x="143" y="24" font-family="Inter,sans-serif" font-size="9" fill="#1c3a5e">All Countries Daily Cost ✓</text>
+        <rect x="700" y="12" width="100" height="18" rx="9" fill="rgba(255,255,255,0.1)"/>
+        <text x="714" y="24" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">⊕ New...  Content  Admin</text>
+        <!-- Tab bar -->
+        <rect y="44" width="1000" height="32" fill="#f0f6ff"/>
+        <rect x="10" y="50" width="68" height="20" rx="10" fill="#2d6f9e"/>
+        <text x="22" y="63" font-family="Inter,sans-serif" font-size="9" fill="#fff" font-weight="700">Standard</text>
+        <text x="86" y="63" font-family="Inter,sans-serif" font-size="9" fill="#7a9ab8">Spotlight</text>
+        <text x="134" y="63" font-family="Inter,sans-serif" font-size="9" fill="#7a9ab8">Statistical</text>
+        <text x="186" y="63" font-family="Inter,sans-serif" font-size="9" fill="#7a9ab8">Target</text>
+        <text x="222" y="63" font-family="Inter,sans-serif" font-size="9" fill="#7a9ab8">Projection</text>
+        <!-- Y axis -->
+        <rect x="10" y="80" width="56" height="340" fill="none"/>
+        <text x="12" y="100" font-family="Inter,sans-serif" font-size="8" fill="#9ab0c8">$600k</text>
+        <text x="12" y="168" font-family="Inter,sans-serif" font-size="8" fill="#9ab0c8">$400k</text>
+        <text x="12" y="240" font-family="Inter,sans-serif" font-size="8" fill="#9ab0c8">$300k</text>
+        <text x="12" y="310" font-family="Inter,sans-serif" font-size="8" fill="#9ab0c8">$200k</text>
+        <text x="12" y="380" font-family="Inter,sans-serif" font-size="8" fill="#9ab0c8">$100k</text>
+        <!-- Chart bg -->
+        <rect x="68" y="78" width="752" height="330" fill="#fff" rx="4"/>
+        <!-- Horizontal grid lines -->
+        <line x1="68" y1="98" x2="820" y2="98" stroke="#e8eef4" stroke-width="1"/>
+        <line x1="68" y1="166" x2="820" y2="166" stroke="#e8eef4" stroke-width="1"/>
+        <line x1="68" y1="234" x2="820" y2="234" stroke="#e8eef4" stroke-width="1"/>
+        <line x1="68" y1="302" x2="820" y2="302" stroke="#e8eef4" stroke-width="1"/>
+        <line x1="68" y1="370" x2="820" y2="370" stroke="#e8eef4" stroke-width="1"/>
+        <!-- Green moving average line -->
+        <polyline points="80,195 160,190 240,188 320,185 400,182 480,170 560,158 640,148 720,138 800,128" stroke="#43a047" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Blue daily data line -->
+        <polyline points="80,340 100,360 120,330 140,350 160,315 180,355 200,335 220,360 240,340 260,310 280,350 300,325 320,345 340,305 360,330 380,355 400,335 420,345 440,320 460,330 480,310 500,320 520,295 540,310 560,305 580,290 600,300 620,285 640,280 660,265 680,255 700,245 720,235 740,230 760,220 780,215 800,205" stroke="#5b9bd5" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.85"/>
+        <!-- X labels -->
+        <text x="100" y="425" font-family="Inter,sans-serif" font-size="9" fill="#9ab0c8">Sep 2</text>
+        <text x="240" y="425" font-family="Inter,sans-serif" font-size="9" fill="#9ab0c8">Sep 3</text>
+        <text x="380" y="425" font-family="Inter,sans-serif" font-size="9" fill="#9ab0c8">Sep 4</text>
+        <text x="520" y="425" font-family="Inter,sans-serif" font-size="9" fill="#9ab0c8">Sep 5</text>
+        <text x="660" y="425" font-family="Inter,sans-serif" font-size="9" fill="#9ab0c8">Sep 6</text>
+        <!-- Legend -->
+        <line x1="80" y1="455" x2="104" y2="455" stroke="#5b9bd5" stroke-width="2"/>
+        <text x="108" y="459" font-family="Inter,sans-serif" font-size="9" fill="#555">All Countries Daily Cost</text>
+        <line x1="265" y1="455" x2="289" y2="455" stroke="#43a047" stroke-width="2"/>
+        <text x="293" y="459" font-family="Inter,sans-serif" font-size="9" fill="#555">Last 30 Day Moving Average</text>
+        <!-- Mobile panel -->
+        <rect x="832" y="0" width="168" height="480" fill="#e8f0f8"/>
+        <rect x="848" y="16" width="136" height="280" rx="16" fill="#1c2a3a"/>
+        <rect x="852" y="20" width="128" height="272" rx="13" fill="#f5f8fc"/>
+        <text x="860" y="36" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#222">18:23</text>
+        <rect x="852" y="40" width="128" height="22" fill="#fff" stroke="#e8eef4" stroke-width="1"/>
+        <text x="865" y="54" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#1c3a5e">Homepage</text>
+        <rect x="852" y="62" width="128" height="16" fill="#f0f4f8"/>
+        <rect x="856" y="64" width="120" height="12" rx="6" fill="#e0e8f0"/>
+        <text x="868" y="73" font-family="Inter,sans-serif" font-size="7" fill="#aaa">Search</text>
+        <text x="860" y="90" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#aaa" letter-spacing="1">MY FAVORITES</text>
+        <rect x="852" y="94" width="128" height="16" fill="#fff"/>
+        <text x="860" y="105" font-family="Inter,sans-serif" font-size="7" fill="#1c3a5e">Customer Churn by Zip Code</text>
+        <rect x="852" y="110" width="128" height="16" fill="#f8f8f8"/>
+        <text x="860" y="121" font-family="Inter,sans-serif" font-size="7" fill="#1c3a5e">Customer Satisfaction Survey</text>
+        <text x="860" y="137" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#aaa" letter-spacing="1">SALES AND MARKETING</text>
+        <text x="860" y="151" font-family="Inter,sans-serif" font-size="7" fill="#1c3a5e">Canada Daily Sales</text>
+        <text x="860" y="162" font-family="Inter,sans-serif" font-size="7" fill="#e53935">$705,618  −13.0%</text>
+        <text x="860" y="176" font-family="Inter,sans-serif" font-size="7" fill="#1c3a5e">Canada Daily Profit</text>
+        <text x="860" y="187" font-family="Inter,sans-serif" font-size="7" fill="#e53935">$171,681  −13.8%</text>
+        <rect x="852" y="272" width="128" height="20" rx="0" fill="#1c3a5e"/>
+        <text x="876" y="285" font-family="Inter,sans-serif" font-size="12" fill="rgba(255,255,255,0.9)">⊞</text>
+        <text x="908" y="285" font-family="Inter,sans-serif" font-size="12" fill="rgba(255,255,255,0.4)">🏷</text>
+        <text x="938" y="285" font-family="Inter,sans-serif" font-size="12" fill="rgba(255,255,255,0.4)">📊</text>
+      </svg>
+    </figure>
+
+    <h2>Overview</h2>
+    <p>Metric Insights is the leading Business Intelligence Portal platform that helps organizations govern, organize, and deliver analytics at scale. Founded in 2012 and headquartered in San Francisco, it integrates all BI tools, reporting, and metrics into a single, consolidated catalog of governed and certified assets — making it simple for users to find, trust, and consume data.</p>
+    <p>This overview case study highlights my role and contribution at Metric Insights. Detailed case studies on specific projects, focusing on the design process and outcomes, will follow.</p>
+
+    <div class="overview-meta">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Senior Product Designer + Feature Owner</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Industry</span>
+        <span class="meta-value">Business Intelligence / SaaS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Task</span>
+        <span class="meta-value">Leading design for the core BI platform and owning the App Builder feature end-to-end</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Result</span>
+        <span class="meta-value">100K+ active users, 35+ enterprise customers, 46 BI integrations, 25% increase in daily engagement</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>My Role</h2>
+    <p>At Metric Insights, my area of responsibility is leading design for the core platform and internal products. This includes the main BI Portal, homepage, search, data governance, and reporting interfaces used by 100K+ users daily.</p>
+    <p>Beyond design, I serve as <strong>Feature Owner for App Builder</strong> — a no-code platform that enables customers to create their own custom desktop apps. In this role I lead a team of two developers and two QA engineers, owning the full product lifecycle from discovery to delivery.</p>
+
+    <hr>
+
+    <h2>Core Problem</h2>
+    <p>Organizations invest heavily in BI tools and analytics, yet employees struggle to find and trust the right data when they need it. Reports and dashboards are scattered across multiple platforms, creating confusion, duplication, and inconsistent metrics.</p>
+    <p>Users waste time searching, validating, and reconciling information instead of making decisions. As a result, valuable insights remain underutilized, and data-driven decision-making loses its impact.</p>
+
+    <!-- Core Problem visual -->
+    <figure>
+      <svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+        <rect width="1000" height="320" fill="#2d6f9e"/>
+        <rect x="100" y="40" width="800" height="240" rx="20" fill="#fff"/>
+        <text x="148" y="100" font-family="Inter,sans-serif" font-size="28" font-weight="800" fill="#111">Core Problem</text>
+        <text x="148" y="140" font-family="Inter,sans-serif" font-size="14" fill="#333">Organizations invest heavily in BI tools and analytics, yet employees struggle to find</text>
+        <text x="148" y="162" font-family="Inter,sans-serif" font-size="14" fill="#333">and trust the right data when they need it. Reports and dashboards are scattered</text>
+        <text x="148" y="184" font-family="Inter,sans-serif" font-size="14" fill="#333">across multiple platforms, creating confusion, duplication, and inconsistent metrics.</text>
+        <text x="148" y="214" font-family="Inter,sans-serif" font-size="14" fill="#333">Users waste time searching and validating information instead of making decisions.</text>
+        <text x="148" y="244" font-family="Inter,sans-serif" font-size="14" fill="#333">Valuable insights remain underutilized, and data-driven decisions lose their impact.</text>
+      </svg>
+    </figure>
+
+    <hr>
+
+    <h2>Target Businesses &amp; User Groups</h2>
+    <p>Metric Insights is designed for medium-to-large enterprises that rely heavily on Business Intelligence and analytics but struggle with fragmented reporting tools, low BI adoption, and lack of trust in data. The platform provides a centralized BI Portal that integrates dashboards, reports, and metrics from BI tools into a single governed catalog.</p>
+
+    <div class="users-grid">
+      <div class="user-card">
+        <div class="user-card__name">BI Analysts</div>
+        <div class="user-card__desc">Create and maintain dashboards, reports, and metrics across different BI tools. They need a structured environment to organize and manage analytics content across teams.</div>
+      </div>
+      <div class="user-card">
+        <div class="user-card__name">IT &amp; Data Teams</div>
+        <div class="user-card__desc">Manage BI infrastructure, integrations, and system security. They ensure reliable access to data and maintain the analytics environment.</div>
+      </div>
+      <div class="user-card">
+        <div class="user-card__name">Business Users</div>
+        <div class="user-card__desc">Managers and operational teams who rely on data for decision-making. They need quick access to relevant insights and trusted reports.</div>
+      </div>
+      <div class="user-card">
+        <div class="user-card__name">Data Governance Teams</div>
+        <div class="user-card__desc">Ensure that analytics content is accurate and consistent. They maintain data quality and trust across BI systems.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Process</h2>
+    <p>At Metric Insights, our product design process began with prioritisation. The CEO and Product Owner collaborated with the Sales team to identify the next problem or feature to address. Once a priority was set, we initiated the discovery phase with the PM.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">01 — Prioritisation</div>
+        <div>
+          <div class="process-step__title">Discovery kick-off</div>
+          <div class="process-step__text">CEO and Product Owner collaborated with Sales to identify the next problem or feature. Once prioritised, we initiated discovery with the PM — gathering data, understanding the problem's significance, and breaking down requirements.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02 — Stakeholders</div>
+        <div>
+          <div class="process-step__title">Constant alignment</div>
+          <div class="process-step__text">We maintained constant communication with various stakeholders — CEO, Product Owner, sales team, and developers. Daily communication with key members was crucial, along with weekly cross-team presentations to ensure alignment before implementation.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03 — Design</div>
+        <div>
+          <div class="process-step__title">High-fidelity & iteration</div>
+          <div class="process-step__text">After discovery, we moved into high-fidelity design — generating multiple options and refining them based on feedback. We tested all solutions with customers, subject matter experts, sales, and CX teams.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04 — Delivery</div>
+        <div>
+          <div class="process-step__title">Implementation & follow-up</div>
+          <div class="process-step__text">Close collaboration with engineering during implementation ensured designs were faithfully executed. Post-launch, we tracked usage metrics and gathered feedback to drive continuous improvement across the platform.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Challenges</h2>
+    <p>Working on a complex enterprise platform over multiple years brought significant design and product challenges:</p>
+
+    <div class="challenges-grid">
+      <div class="challenge-card">
+        <div class="challenge-card__name">Outdated Design System</div>
+        <div class="challenge-card__desc">The existing design system contained outdated and inconsistent components. I redesigned and implemented a new unified design system across the entire MI platform, improving consistency and scalability.</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__name">Complex Data Analytics</div>
+        <div class="challenge-card__desc">Worked with complex data structures and analytics requirements to support seamless BI tool integrations across dozens of different platforms.</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__name">Speed vs. Quality</div>
+        <div class="challenge-card__desc">Balancing rapid delivery timelines — often within days or weeks — while maintaining a high-quality and consistent user experience across the platform.</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__name">BI Integration UX</div>
+        <div class="challenge-card__desc">Metric Insights integrates with a wide range of BI tools. Designing a consistent and intuitive UX across these diverse integrations was a significant ongoing challenge.</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__name">No-Code App Builder</div>
+        <div class="challenge-card__desc">Customer Apps could previously be built only through custom code. I designed a no-code App Builder and led its implementation — enabling self-serve app creation and reducing reliance on developers.</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__name">Enterprise Scale</div>
+        <div class="challenge-card__desc">Designing for companies ranging from 100 to 5,000 users with vastly different needs, data volumes, and governance requirements demanded scalable, flexible solutions.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Solution</h2>
+    <p>Metric Insights is an enterprise Business Intelligence portal that centralizes analytics across multiple BI tools into a single, searchable hub. It allows organizations to discover trusted reports, dashboards, and metrics in one place, improving data accessibility and consistency across teams.</p>
+    <p>By providing a unified entry point to analytics, Metric Insights simplifies data governance, increases engagement with BI content, and helps companies make faster, more informed decisions based on reliable data.</p>
+
+    <!-- Solution screenshot: BI Ops -->
+    <figure>
+      <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="background:#e8eef8;display:block;width:100%;height:auto">
+        <!-- Top tab bar -->
+        <rect width="1000" height="40" fill="#fff" stroke="#e0e8f0" stroke-width="1"/>
+        <rect x="10" y="8" width="70" height="24" rx="12" fill="#2d6f9e"/>
+        <text x="22" y="23" font-family="Inter,sans-serif" font-size="10" fill="#fff" font-weight="600">Catalog</text>
+        <text x="88" y="23" font-family="Inter,sans-serif" font-size="10" fill="#2d6f9e" font-weight="600">BI Ops</text>
+        <text x="136" y="23" font-family="Inter,sans-serif" font-size="10" fill="#888">Dashboard</text>
+        <text x="206" y="23" font-family="Inter,sans-serif" font-size="10" fill="#888">5 more...</text>
+        <!-- Sub tabs -->
+        <rect y="40" width="1000" height="32" fill="#f5f8fc" stroke="#e0e8f0" stroke-width="1"/>
+        <rect x="10" y="48" width="80" height="18" rx="9" fill="#2d6f9e"/>
+        <text x="22" y="60" font-family="Inter,sans-serif" font-size="9" fill="#fff">Reports</text>
+        <text x="98" y="60" font-family="Inter,sans-serif" font-size="9" fill="#888">Reports Similar</text>
+        <text x="196" y="60" font-family="Inter,sans-serif" font-size="9" fill="#2d6f9e" font-weight="600">My Optimizations</text>
+        <!-- Banner -->
+        <rect x="10" y="80" width="980" height="24" rx="4" fill="#fff9e6" stroke="#f5c842" stroke-width="1"/>
+        <text x="18" y="95" font-family="Inter,sans-serif" font-size="9" fill="#555">10% of all reports are similar (10 of 100 reports)</text>
+        <!-- Left tree panel -->
+        <rect x="10" y="112" width="300" height="278" fill="#fff" stroke="#e0e8f0" stroke-width="1" rx="4"/>
+        <text x="18" y="134" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#1c3a5e">▼ Tableau PROD – EMEA</text>
+        <rect x="220" y="124" width="28" height="14" rx="7" fill="#dde8f4"/>
+        <text x="226" y="134" font-family="Inter,sans-serif" font-size="8" fill="#2d6f9e">683</text>
+        <text x="28" y="152" font-family="Inter,sans-serif" font-size="9" fill="#555">Admin</text>
+        <rect x="220" y="142" width="28" height="14" rx="7" fill="#dde8f4"/>
+        <text x="226" y="152" font-family="Inter,sans-serif" font-size="8" fill="#2d6f9e">600</text>
+        <text x="28" y="170" font-family="Inter,sans-serif" font-size="9" fill="#555">Marketing</text>
+        <text x="28" y="188" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#1c3a5e">▼ Product</text>
+        <rect x="220" y="178" width="28" height="14" rx="7" fill="#dde8f4"/>
+        <text x="226" y="188" font-family="Inter,sans-serif" font-size="8" fill="#2d6f9e">83</text>
+        <text x="38" y="206" font-family="Inter,sans-serif" font-size="9" fill="#555">Product Research</text>
+        <text x="38" y="222" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="#1c3a5e">▼ Product Analysis</text>
+        <text x="48" y="240" font-family="Inter,sans-serif" font-size="9" fill="#333">MAU Detailed Analysis</text>
+        <rect x="196" y="230" width="40" height="14" rx="7" fill="#fde8a0"/>
+        <text x="202" y="240" font-family="Inter,sans-serif" font-size="8" fill="#b07000">Unused</text>
+        <text x="48" y="258" font-family="Inter,sans-serif" font-size="9" fill="#333">MAU Analysis</text>
+        <rect x="196" y="248" width="40" height="14" rx="7" fill="#fde8a0"/>
+        <text x="202" y="258" font-family="Inter,sans-serif" font-size="8" fill="#b07000">Unused</text>
+        <text x="48" y="276" font-family="Inter,sans-serif" font-size="9" fill="#333">MAU Analysis v2</text>
+        <rect x="196" y="266" width="40" height="14" rx="7" fill="#fde8a0"/>
+        <text x="202" y="276" font-family="Inter,sans-serif" font-size="8" fill="#b07000">Unused</text>
+        <!-- Right compare panel -->
+        <rect x="320" y="112" width="670" height="278" fill="#fff" stroke="#e0e8f0" stroke-width="1" rx="4"/>
+        <text x="334" y="136" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#1c3a5e">Compare</text>
+        <rect x="470" y="120" width="130" height="24" rx="12" fill="#e0f0e0" stroke="#a0c8a0" stroke-width="1"/>
+        <text x="482" y="135" font-family="Inter,sans-serif" font-size="9" fill="#2e7d32" font-weight="600">Show Differences Only</text>
+        <rect x="612" y="120" width="96" height="24" rx="12" fill="#4caf50"/>
+        <text x="628" y="135" font-family="Inter,sans-serif" font-size="9" fill="#fff" font-weight="700">Take Action</text>
+        <!-- Table header -->
+        <rect x="320" y="148" width="670" height="18" fill="#f5f8fc" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="160" font-family="Inter,sans-serif" font-size="9" fill="#888">Report Details</text>
+        <text x="560" y="160" font-family="Inter,sans-serif" font-size="9" fill="#888">MAU Detailed Analysis</text>
+        <text x="760" y="160" font-family="Inter,sans-serif" font-size="9" fill="#888">MAU Analysis</text>
+        <!-- Table rows -->
+        <line x1="320" y1="166" x2="990" y2="166" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="180" font-family="Inter,sans-serif" font-size="9" fill="#555">Folder</text>
+        <text x="560" y="180" font-family="Inter,sans-serif" font-size="9" fill="#333">../Product Analysis</text>
+        <text x="760" y="180" font-family="Inter,sans-serif" font-size="9" fill="#333">../Product Analysis</text>
+        <line x1="320" y1="186" x2="990" y2="186" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="200" font-family="Inter,sans-serif" font-size="9" fill="#555">Owner</text>
+        <text x="560" y="200" font-family="Inter,sans-serif" font-size="9" fill="#333">Bobby James</text>
+        <text x="760" y="200" font-family="Inter,sans-serif" font-size="9" fill="#333">Jonathan Muralikrishna</text>
+        <line x1="320" y1="206" x2="990" y2="206" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="220" font-family="Inter,sans-serif" font-size="9" fill="#555">90 Day Views</text>
+        <text x="560" y="220" font-family="Inter,sans-serif" font-size="9" fill="#333">542</text>
+        <text x="760" y="220" font-family="Inter,sans-serif" font-size="9" fill="#333">251</text>
+        <line x1="320" y1="226" x2="990" y2="226" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="240" font-family="Inter,sans-serif" font-size="9" fill="#555">Users with Access</text>
+        <text x="560" y="240" font-family="Inter,sans-serif" font-size="9" fill="#333">520</text>
+        <text x="760" y="240" font-family="Inter,sans-serif" font-size="9" fill="#333">206</text>
+        <line x1="320" y1="246" x2="990" y2="246" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="260" font-family="Inter,sans-serif" font-size="9" fill="#555">Groups with Access</text>
+        <text x="560" y="260" font-family="Inter,sans-serif" font-size="9" fill="#333">10 Groups</text>
+        <text x="760" y="260" font-family="Inter,sans-serif" font-size="9" fill="#333">15 Groups</text>
+        <line x1="320" y1="266" x2="990" y2="266" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="280" font-family="Inter,sans-serif" font-size="9" fill="#555">Report Column Overlap</text>
+        <text x="560" y="280" font-family="Inter,sans-serif" font-size="9" fill="#333">Sales Analysis</text>
+        <text x="760" y="280" font-family="Inter,sans-serif" font-size="9" fill="#333">Sales Summary</text>
+        <line x1="320" y1="286" x2="990" y2="286" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="300" font-family="Inter,sans-serif" font-size="9" fill="#555">Product</text>
+        <text x="560" y="300" font-family="Inter,sans-serif" font-size="12" fill="#4caf50">✓</text>
+        <text x="760" y="300" font-family="Inter,sans-serif" font-size="12" fill="#4caf50">✓</text>
+        <line x1="320" y1="306" x2="990" y2="306" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="320" font-family="Inter,sans-serif" font-size="9" fill="#555">SDR</text>
+        <text x="560" y="320" font-family="Inter,sans-serif" font-size="12" fill="#4caf50">✓</text>
+        <line x1="320" y1="326" x2="990" y2="326" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="340" font-family="Inter,sans-serif" font-size="9" fill="#555">Territory</text>
+        <text x="560" y="340" font-family="Inter,sans-serif" font-size="9" fill="#888">filter</text>
+        <text x="760" y="340" font-family="Inter,sans-serif" font-size="9" fill="#888">filter</text>
+        <line x1="320" y1="346" x2="990" y2="346" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="360" font-family="Inter,sans-serif" font-size="9" fill="#555">Deals Closed</text>
+        <text x="560" y="360" font-family="Inter,sans-serif" font-size="12" fill="#4caf50">✓</text>
+        <line x1="320" y1="366" x2="990" y2="366" stroke="#e0e8f0" stroke-width="1"/>
+        <text x="334" y="380" font-family="Inter,sans-serif" font-size="9" fill="#555">Open Opportunities</text>
+        <text x="760" y="380" font-family="Inter,sans-serif" font-size="12" fill="#4caf50">✓</text>
+      </svg>
+    </figure>
+
+    <hr>
+
+    <h2>Outcomes</h2>
+    <p>The combination of a strong product vision, close collaboration, and consistent design delivery led to measurable results across the platform.</p>
+
+    <div class="outcomes-grid">
+      <div class="outcome-cell">
+        <div class="outcome-number">35+</div>
+        <div class="outcome-label">Paid Customers</div>
+        <p class="outcome-desc">35+ enterprise customers with a 100% renewal rate, demonstrating strong product value and customer satisfaction.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">100k</div>
+        <div class="outcome-label">Active Users</div>
+        <p class="outcome-desc">100K+ active users across customers, with companies ranging from 100 to 5,000 users actively using the platform for BI analytics.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">46</div>
+        <div class="outcome-label">BI Integrations</div>
+        <p class="outcome-desc">46 BI integrations including Tableau, Power BI, Looker, and Sigma — the broadest integration catalog in the space.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">25%</div>
+        <div class="outcome-label">Daily Engagement</div>
+        <p class="outcome-desc">Improved UX and system consistency led to higher engagement and feature adoption across enterprise accounts.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Summary</h2>
+    <p>Working at Metric Insights has been a defining experience in my career — leading design on a complex enterprise platform, growing into a product leadership role, and learning how to balance fast delivery with uncompromising quality.</p>
+    <p>The challenges of designing for data-heavy, enterprise-scale products made me a better designer: more pragmatic, more systems-oriented, and more focused on outcomes over aesthetics.</p>
+
+  </div><!-- /project-detail__content -->
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="project-detail__nav reveal">
+    <a href="index.html" class="project-detail__nav-link">
+      <span class="project-detail__nav-label">← Back</span>
+      <span class="project-detail__nav-title">All Work</span>
+    </a>
+    <a href="about.html" class="project-detail__nav-link project-detail__nav-link--next">
+      <span class="project-detail__nav-label">Learn more →</span>
+      <span class="project-detail__nav-title">About Me</span>
+    </a>
+  </nav>
+
+</div>
+</article>
+</main>
+
+<footer style="padding:3rem 0;border-top:1px solid var(--color-border)">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">© 2026 Andrii Plakhotin. All rights reserved.</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">Made with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--color-text-tertiary);text-decoration:underline;text-underline-offset:2px">Claude Code</a> and coffee ☕</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("pageshow", e => { if (e.persisted) document.body.style.opacity = "1"; });
+
+// Theme toggle
+(function() {
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 767;
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    if (!isMobile()) localStorage.setItem("portfolio-theme", t);
+  }
+  if (isMobile()) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mq.matches ? "dark" : "light");
+    mq.addEventListener("change", e => setTheme(e.matches ? "dark" : "light"));
+    return;
+  }
+  let cur = root.getAttribute("data-theme") || "dark";
+  document.querySelectorAll(".theme-toggle").forEach(btn => {
+    btn.addEventListener("click", () => { cur = cur === "dark" ? "light" : "dark"; setTheme(cur); });
+  });
+  window.addEventListener("storage", e => { if (e.key === "portfolio-theme" && e.newValue) { cur = e.newValue; root.setAttribute("data-theme", cur); } });
+})();
+
+// Scroll reveal (elements + figures + hr + image-grid)
+(function() {
+  const els = document.querySelectorAll(".reveal, .project-detail__content figure, .project-detail__content hr, .image-grid");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(el => io.observe(el));
+})();
+
+// Page transitions
+document.addEventListener("click", function(e) {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href) return;
+  if (a.target === "_blank" || href.startsWith("http") || href.startsWith("#") || href.startsWith("mailto:")) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  document.body.classList.add("page-exiting");
+  setTimeout(() => { window.location.href = href; }, 300);
+});
+</script>
+</body>
+</html>

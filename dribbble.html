@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us" suppresshydrationwarning>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dribbble Shots | Andrii Plakhotin</title>
+<meta name="description" content="Visual explorations, UI concepts, and design shots by Andrii Plakhotin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme=dark]{
+  color-scheme:dark;
+  --color-bg-primary:#14150d;
+  --color-bg-secondary:#1c1e16;
+  --color-bg-tertiary:#232620;
+  --color-bg-surface:rgba(255,255,255,0.03);
+  --color-bg-surface-hover:rgba(255,255,255,0.06);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#F4A070;
+  --color-text-primary:#e8e3d8;
+  --color-text-secondary:#a8a398;
+  --color-text-tertiary:#6e6b63;
+  --color-text-inverse:#14150d;
+  --color-border:rgba(255,255,255,0.08);
+  --color-border-hover:rgba(255,255,255,0.15);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.5);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.6);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --color-bg-primary:#f2f0e8;
+  --color-bg-secondary:#f9f7f1;
+  --color-bg-tertiary:#e8e5dc;
+  --color-bg-surface:rgba(0,0,0,0.025);
+  --color-bg-surface-hover:rgba(0,0,0,0.05);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#D4712E;
+  --color-text-primary:#1a1b14;
+  --color-text-secondary:#524f45;
+  --color-text-tertiary:#7a7670;
+  --color-text-inverse:#f9f7f1;
+  --color-border:rgba(0,0,0,0.08);
+  --color-border-hover:rgba(0,0,0,0.15);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.09);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.11);
+}
+:root{
+  --font:'Inter',system-ui,sans-serif;
+  --nav-height:72px;
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --duration-fast:150ms;
+  --duration-slower:800ms;
+}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font);font-size:16px;line-height:1.6;color:var(--color-text-primary);background:var(--color-bg-primary);transition:background .5s,color .5s;display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ── HOME LOGO ── */
+.home-logo{position:fixed;top:28px;left:40px;z-index:1000;display:flex;align-items:center;padding:12px 20px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.home-logo:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar__logo-svg{height:32px;width:auto;color:var(--color-text-primary)}
+
+/* ── NAV CLUSTER ── */
+.nav-cluster{position:fixed;top:28px;right:28px;z-index:1000;display:flex;align-items:center;gap:10px}
+.navbar-pill{position:static;display:flex;align-items:center;padding:12px 20px 12px 12px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.navbar-pill:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar-pill__links{display:flex;align-items:center;gap:20px}
+.navbar-pill__link{font-size:14px;font-weight:500;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;transition:color var(--duration-fast)}
+.navbar-pill__link:hover{color:var(--color-text-primary)}
+.navbar-pill__contact{font-size:14px;font-weight:600;color:#fff;background:var(--color-accent-warm);padding:8px 16px;border-radius:9999px;letter-spacing:0.05em;text-transform:uppercase;transition:background var(--duration-fast),transform var(--duration-fast)}
+.navbar-pill__contact:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9999px;background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text-secondary);cursor:pointer;transition:border-color var(--duration-fast),background var(--duration-fast),color var(--duration-fast)}
+.theme-toggle:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);color:var(--color-text-primary)}
+.theme-toggle__icon{width:18px;height:18px}
+.theme-toggle__icon--sun{display:block}
+.theme-toggle__icon--moon{display:none}
+[data-theme=light] .theme-toggle__icon--sun{display:none}
+[data-theme=light] .theme-toggle__icon--moon{display:block}
+
+/* ── LAYOUT ── */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+main{padding-top:var(--nav-height);flex:1}
+
+/* ── PAGE HEADER ── */
+.page-header{padding:64px 0 48px}
+.page-header__label{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:12px}
+.page-header__title{font-size:clamp(32px,4vw,56px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--color-text-primary)}
+.page-header__sub{font-size:16px;color:var(--color-text-secondary);margin-top:12px}
+
+/* ── SHOTS GRID ── */
+.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-bottom:80px}
+
+/* ── SHOT CARD ── */
+.shot-card{display:flex;flex-direction:column;gap:14px}
+.shot-card__video-wrap{position:relative;width:100%;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--color-bg-tertiary);cursor:pointer}
+.shot-card__video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+.shot-card__overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.2s}
+.shot-card__video-wrap:hover .shot-card__overlay{background:rgba(0,0,0,0.12)}
+.shot-card__meta{display:flex;flex-direction:column;gap:6px;padding:0 2px}
+.shot-card__title{font-size:15px;font-weight:600;color:var(--color-text-primary);line-height:1.35}
+.shot-card__stats{display:flex;align-items:center;gap:16px}
+.shot-card__stat{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--color-text-tertiary)}
+.shot-card__stat svg{width:14px;height:14px;flex-shrink:0}
+
+/* ── FOOTER ── */
+.page-footer{padding:48px 0;border-top:1px solid var(--color-border)}
+.footer-bottom{display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-tertiary);flex-wrap:wrap;gap:8px}
+.footer-bottom a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity var(--duration-slower) var(--ease-out-expo),transform var(--duration-slower) var(--ease-out-expo)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:80ms}
+.reveal-delay-2{transition-delay:160ms}
+.reveal-delay-3{transition-delay:240ms}
+.reveal-delay-4{transition-delay:320ms}
+.reveal-delay-5{transition-delay:400ms}
+
+/* ── PAGE TRANSITION ── */
+@keyframes slide-in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+main{animation:slide-in .5s cubic-bezier(.16,1,.3,1) both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){.shots-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media(max-width:768px){
+  .home-logo{top:12px;left:20px;padding:8px 14px}
+  .nav-cluster{top:12px;right:16px}
+  .navbar-pill{padding:8px 12px 8px 8px}
+  .navbar-pill__links{gap:12px}
+  .navbar-pill__link{display:none}
+  .navbar-pill__contact{font-size:12px;padding:6px 12px}
+  .theme-toggle{width:34px;height:34px}
+  .shots-grid{grid-template-columns:1fr;gap:24px}
+  .page-header{padding:48px 0 32px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script>(function(){try{var e,t,n,s=window.innerWidth<=767;s?e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":(e=localStorage.getItem("portfolio-theme"),e||(t=new Date,n=t.getHours()+t.getMinutes()/60,e=n>=7.5&&n<18?"light":"dark")),document.documentElement.setAttribute("data-theme",e)}catch{document.documentElement.setAttribute("data-theme","dark")}})()</script>
+</head>
+<body>
+
+<!-- HOME LOGO -->
+<a href="index.html" class="home-logo" aria-label="Home">
+  <svg class="navbar__logo-svg" viewBox="0 0 127 95" fill="none" aria-hidden="true">
+    <path d="M 6 88 L 30 7 M 54 88 L 30 7 M 16 56 L 44 56" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 68 88 L 68 7 M 68 7 C 68 7 114 7 114 33 C 114 57 68 52 68 52" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- NAV CLUSTER -->
+<div class="nav-cluster">
+  <nav class="navbar-pill" aria-label="Main navigation">
+    <div class="navbar-pill__links">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+      <a href="about.html" class="navbar-pill__link">About me</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="navbar-pill__contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<main>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-header__label reveal">Visual work</p>
+      <h1 class="page-header__title reveal reveal-delay-1">My Dribbble</h1>
+      <p class="page-header__sub reveal reveal-delay-2">UI concepts, visual explorations, and design shots.</p>
+    </div>
+  </section>
+
+  <!-- SHOTS GRID -->
+  <section>
+    <div class="container">
+      <div class="shots-grid">
+
+        <!-- Shot 1 -->
+        <div class="shot-card reveal">
+          <a class="shot-card__video-wrap" href="https://dribbble.com/shots/15467437-E-Commerce-App-Landing-Hero-Section" target="_blank" rel="noopener">
+            <video src="1.mp4" autoplay muted loop playsinline></video>
+            <div class="shot-card__overlay"></div>
+          </a>
+          <div class="shot-card__meta">
+            <p class="shot-card__title">E-Commerce App Landing Hero Section</p>
+            <div class="shot-card__stats">
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                1400+
+              </span>
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                500k+
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shot 2 -->
+        <div class="shot-card reveal reveal-delay-1">
+          <a class="shot-card__video-wrap" href="https://dribbble.com/shots/15392122-Banking-App-Hero-Landing-Animation" target="_blank" rel="noopener">
+            <video src="2.mp4" autoplay muted loop playsinline></video>
+            <div class="shot-card__overlay"></div>
+          </a>
+          <div class="shot-card__meta">
+            <p class="shot-card__title">Banking App Hero Landing Animation</p>
+            <div class="shot-card__stats">
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                400+
+              </span>
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                174k+
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shot 3 -->
+        <div class="shot-card reveal reveal-delay-2">
+          <a class="shot-card__video-wrap" href="https://dribbble.com/shots/16778052-Online-Books-Platform-Listen-and-Read" target="_blank" rel="noopener">
+            <video src="3.mp4" autoplay muted loop playsinline></video>
+            <div class="shot-card__overlay"></div>
+          </a>
+          <div class="shot-card__meta">
+            <p class="shot-card__title">Online Books Platform Listen and Read</p>
+            <div class="shot-card__stats">
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                400+
+              </span>
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                100k+
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shot 4 -->
+        <div class="shot-card reveal reveal-delay-3">
+          <a class="shot-card__video-wrap" href="https://dribbble.com/shots/16256501-HR-Management-Platform" target="_blank" rel="noopener">
+            <video src="4.mp4" autoplay muted loop playsinline></video>
+            <div class="shot-card__overlay"></div>
+          </a>
+          <div class="shot-card__meta">
+            <p class="shot-card__title">HR Management Platform</p>
+            <div class="shot-card__stats">
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                550+
+              </span>
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                200k+
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shot 5 -->
+        <div class="shot-card reveal reveal-delay-4">
+          <a class="shot-card__video-wrap" href="https://dribbble.com/shots/15777413-Vacation-Rental-Service-Landing-Animation" target="_blank" rel="noopener">
+            <video src="5.mp4" autoplay muted loop playsinline></video>
+            <div class="shot-card__overlay"></div>
+          </a>
+          <div class="shot-card__meta">
+            <p class="shot-card__title">Vacation Rental Service Landing Animation</p>
+            <div class="shot-card__stats">
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                250+
+              </span>
+              <span class="shot-card__stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                86k+
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Andrii Plakhotin. All rights reserved.</span>
+        <span>Made with <a href="https://claude.ai/code" target="_blank">Claude Code</a> and coffee ☕</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- CUSTOM CURSOR -->
+<div class="curzr" hidden style="box-sizing:border-box;position:fixed;top:-15px;left:-15px;z-index:2147483647;width:30px;height:30px;border-radius:50%;overflow:visible;transition:200ms,transform 2.2ms;user-select:none;pointer-events:none;mix-blend-mode:difference">
+  <svg viewBox="0 0 30 30" width="30" height="30">
+    <defs><filter id="curzr-motion-blur" x="-100%" y="-100%" width="400%" height="400%"><feGaussianBlur class="curzr-motion-blur" in="SourceGraphic" stdDeviation="0,0"/></filter></defs>
+    <circle cx="15" cy="15" r="10" fill="#fff" filter="url(#curzr-motion-blur)"/>
+  </svg>
+</div>
+
+<script>
+// Theme
+(function() {
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 767;
+  function setTheme(t) { root.setAttribute("data-theme", t); if (!isMobile()) localStorage.setItem("portfolio-theme", t); }
+  if (isMobile()) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mq.matches ? "dark" : "light");
+    mq.addEventListener("change", e => setTheme(e.matches ? "dark" : "light"));
+    return;
+  }
+  let cur = root.getAttribute("data-theme") || "dark";
+  document.getElementById("theme-toggle")?.addEventListener("click", () => { cur = cur === "dark" ? "light" : "dark"; setTheme(cur); });
+  window.addEventListener("storage", e => { if (e.key === "portfolio-theme" && e.newValue) { cur = e.newValue; root.setAttribute("data-theme", cur); }});
+})();
+
+// Scroll reveal
+(function() {
+  const els = document.querySelectorAll(".reveal");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }});
+  }, { threshold: 0.07, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(el => obs.observe(el));
+})();
+
+// Page transitions
+(function() {
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) return;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.body.classList.add('page-exiting');
+      setTimeout(() => { window.location.href = href; }, 300);
+    });
+  });
+})();
+</script>
+</body>
+</html>

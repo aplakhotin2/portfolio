@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en-us" suppresshydrationwarning>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Andrii Plakhotin</title>
+<meta name="description" content="Crafting scalable SaaS platforms and engaging digital products for global markets.">
+<meta name="author" content="Andrii Plakhotin">
+<meta name="keywords" content="product designer,ux design,ui design,design systems,SaaS,portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme=dark]{
+  color-scheme:dark;
+  --color-bg-primary:#14150d;
+  --color-bg-secondary:#1c1e16;
+  --color-bg-tertiary:#232620;
+  --color-bg-elevated:#2c3130;
+  --color-bg-surface:rgba(255,255,255,0.03);
+  --color-bg-surface-hover:rgba(255,255,255,0.06);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#F4A070;
+  --color-accent-warm-muted:rgba(241,138,74,0.15);
+  --color-accent-cool:#6a8a8f;
+  --color-accent-cool-hover:#7d9ea3;
+  --color-accent-cool-muted:rgba(106,138,143,0.12);
+  --color-text-primary:#e8e3d8;
+  --color-text-secondary:#a8a398;
+  --color-text-tertiary:#6e6b63;
+  --color-text-inverse:#14150d;
+  --color-border:rgba(255,255,255,0.08);
+  --color-border-hover:rgba(255,255,255,0.15);
+  --color-border-accent:rgba(106,138,143,0.28);
+  --color-success:#8a9e8f;
+  --color-error:#b87070;
+  --color-nav-scrolled:rgba(20,21,13,0.55);
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.5);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.6);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --color-bg-primary:#f2f0e8;
+  --color-bg-secondary:#f9f7f1;
+  --color-bg-tertiary:#e8e5dc;
+  --color-bg-elevated:#fdfcf9;
+  --color-bg-surface:rgba(0,0,0,0.025);
+  --color-bg-surface-hover:rgba(0,0,0,0.05);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#D4712E;
+  --color-accent-warm-muted:rgba(241,138,74,0.12);
+  --color-accent-cool:#3a4a4d;
+  --color-accent-cool-hover:#4a5d61;
+  --color-accent-cool-muted:rgba(58,74,77,0.09);
+  --color-text-primary:#1a1b14;
+  --color-text-secondary:#524f45;
+  --color-text-tertiary:#7a7670;
+  --color-text-inverse:#f9f7f1;
+  --color-border:rgba(0,0,0,0.08);
+  --color-border-hover:rgba(0,0,0,0.15);
+  --color-border-accent:rgba(58,74,77,0.28);
+  --color-success:#5e8464;
+  --color-error:#a85a50;
+  --color-nav-scrolled:rgba(242,240,232,0.60);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.07);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.09);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.11);
+}
+:root{
+  --font-heading:'Inter',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'Inter',system-ui,sans-serif;
+  --text-xs:clamp(0.7rem,0.65rem + 0.2vw,0.8rem);
+  --text-sm:clamp(0.8rem,0.75rem + 0.25vw,0.9rem);
+  --text-base:clamp(0.9rem,0.85rem + 0.4vw,1.0625rem);
+  --text-lg:clamp(1rem,0.9rem + 0.5vw,1.2rem);
+  --text-xl:clamp(1.2rem,1rem + 0.8vw,1.5rem);
+  --text-2xl:clamp(1.5rem,1.2rem + 1.2vw,2rem);
+  --text-3xl:clamp(2rem,1.5rem + 2vw,3rem);
+  --text-4xl:clamp(2.5rem,1.8rem + 3vw,4rem);
+  --text-5xl:clamp(3rem,2rem + 4vw,5rem);
+  --weight-light:300;
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+  --leading-tight:1.1;
+  --leading-snug:1.25;
+  --leading-normal:1.5;
+  --leading-relaxed:1.7;
+  --leading-heading:1.15;
+  --tracking-tighter:-0.05em;
+  --tracking-tight:-0.04em;
+  --tracking-normal:0;
+  --tracking-wide:0.05em;
+  --tracking-wider:0.1em;
+  --space-1:0.25rem;
+  --space-2:0.5rem;
+  --space-3:0.75rem;
+  --space-4:1rem;
+  --space-5:1.25rem;
+  --space-6:1.5rem;
+  --space-8:2rem;
+  --space-10:2.5rem;
+  --space-12:3rem;
+  --space-16:4rem;
+  --space-20:5rem;
+  --space-24:6rem;
+  --space-32:8rem;
+  --radius-sm:8px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --radius-2xl:48px;
+  --radius-full:9999px;
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --duration-fast:150ms;
+  --duration-normal:300ms;
+  --duration-slow:500ms;
+  --duration-slower:800ms;
+  --nav-height:72px;
+}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+body{font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-normal);color:var(--color-text-primary);background-color:var(--color-bg-primary);transition:background-color .5s var(--ease-out-quart),color .5s var(--ease-out-quart)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul,ol{list-style:none}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--space-6)}
+
+/* ── BUTTONS ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-4) var(--space-8);background:var(--color-accent-warm);color:var(--color-text-inverse);font-weight:var(--weight-semibold);font-size:var(--text-sm);letter-spacing:var(--tracking-wide);border-radius:var(--radius-full);transition:background var(--duration-fast) var(--ease-out-quart),transform var(--duration-fast) var(--ease-out-quart)}
+.btn-primary:hover{background:var(--color-accent-warm-hover);transform:translateY(-2px)}
+.is-home .hero .btn-primary,.is-home .home-hero .btn-primary{background:#15160f;color:#f2f0e8}
+.is-home .home-hero .btn-primary:hover{background:#1f2a22}
+[data-theme=dark] .is-home .home-hero .btn-primary{background:#f2f0e8;color:#14150d}
+[data-theme=dark] .is-home .home-hero .btn-primary:hover{background:#e8e3d8}
+
+/* ── HEADER: LOGO (top-left) + NAV CLUSTER (top-right) ── */
+.home-logo{position:fixed;top:28px;left:40px;z-index:1000;display:flex;align-items:center;padding:12px 20px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.home-logo:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar__logo-svg{height:32px;width:auto;color:var(--color-text-primary)}
+.nav-cluster{position:fixed;top:28px;right:28px;z-index:1000;display:flex;align-items:center;gap:10px}
+.navbar-pill{position:static;display:flex;align-items:center;padding:12px 20px 12px 12px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.navbar-pill:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar-pill__links{display:flex;align-items:center;gap:20px}
+.navbar-pill__link{font-size:14px;font-weight:500;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;transition:color var(--duration-fast)}
+.navbar-pill__link:hover,.navbar-pill__link--active{color:var(--color-text-primary)}
+.navbar-pill__contact{font-size:14px;font-weight:600;color:#fff;background:var(--color-accent-warm);padding:8px 16px;border-radius:9999px;letter-spacing:0.05em;text-transform:uppercase;transition:background var(--duration-fast),transform var(--duration-fast)}
+.navbar-pill__contact:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-full);background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text-secondary);cursor:pointer;transition:border-color var(--duration-fast),background var(--duration-fast),color var(--duration-fast)}
+.theme-toggle:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);color:var(--color-text-primary)}
+.theme-toggle__icon{width:18px;height:18px;transition:opacity var(--duration-normal),transform var(--duration-normal) var(--ease-out-expo)}
+.theme-toggle__icon--sun{display:block}
+.theme-toggle__icon--moon{display:none}
+[data-theme=light] .theme-toggle__icon--sun{display:none}
+[data-theme=light] .theme-toggle__icon--moon{display:block}
+
+/* ── MAIN / CANVAS ── */
+.is-home main{padding-top:0!important;flex:none!important;height:100vh;height:100dvh;overflow:hidden}
+.is-home .footer{display:none}
+.home-footer{position:fixed;bottom:0;left:0;right:0;z-index:1002;padding:var(--space-5) 0;pointer-events:none}
+.home-footer .footer__inner{display:flex;justify-content:space-between;align-items:center;padding:0 calc(28px + var(--space-5)) 0 calc(40px + var(--space-5));pointer-events:auto}
+.footer__copyright{font-size:var(--text-sm);color:var(--color-text-tertiary)}
+.footer__made{font-size:var(--text-sm);color:var(--color-text-tertiary)}
+.footer__made-link{color:var(--color-text-tertiary);text-decoration:underline;text-underline-offset:2px;transition:color var(--duration-fast)}
+.footer__made-link:hover{color:var(--color-text-secondary)}
+.homepage-canvas{position:relative;width:100%;height:100vh;height:100dvh;overflow:hidden;isolation:isolate}
+.homepage-canvas::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--color-text-tertiary) 1px,transparent 1px);background-size:40px 40px;background-position:0 0;transition:opacity .5s ease}
+body.page-transitioning .homepage-canvas::before{opacity:0}
+
+/* ── HOME HERO ── */
+.home-hero{position:fixed;left:calc(40px + var(--space-5));top:110px;z-index:10;max-width:460px}
+.home-hero__title{font-family:'Inter',system-ui,sans-serif;font-size:clamp(40px,4vw,62px);font-weight:800;line-height:1.05;letter-spacing:-0.04em;color:var(--color-text-primary);margin-bottom:var(--space-5)}
+.home-hero__accent{color:var(--color-accent-warm)}
+.home-hero__subtitle{font-size:var(--text-lg);color:var(--color-text-secondary);line-height:var(--leading-relaxed);max-width:380px;margin-bottom:var(--space-8)}
+.hero-avatar{display:inline-block;vertical-align:middle;width:clamp(48px,4.2vw,64px);height:clamp(48px,4.2vw,64px);border-radius:50%;object-fit:cover;object-position:center top;margin:0 6px 6px 4px;flex-shrink:0}
+
+/* ── ROTATING WORDS ── */
+.hero-rotate-wrap{display:inline-block;overflow:hidden;vertical-align:top;height:1.08em;line-height:1.05}
+.hero-rotate-word{display:block;white-space:nowrap;will-change:transform,opacity}
+
+/* ── STACK CARDS ── */
+.home-stack{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+.stack-container{width:100%;height:100%;position:relative}
+.stack-card{position:absolute;width:clamp(288px,22.5vw,437px);aspect-ratio:486/554;margin:0;pointer-events:auto;cursor:grab;border-radius:12px;will-change:transform,left,top;text-decoration:none;opacity:0;display:flex;flex-direction:column;align-items:flex-start;padding:16px;gap:19px;isolation:isolate;background:var(--card-color,#FFFFFF);border:none;box-shadow:0 8px 24px -4px rgba(0,0,0,.15);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
+.stack-card.is-placed{opacity:1;transform-origin:center center;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.stack-card:nth-child(1).is-placed{transition-delay:.05s}
+.stack-card:nth-child(2).is-placed{transition-delay:.12s}
+.stack-card:nth-child(3).is-placed{transition-delay:.19s}
+.stack-card:nth-child(4).is-placed{transition-delay:.26s}
+.stack-card::before{content:'';position:absolute;inset:-1px;background:var(--card-color,#FFFFFF);border-radius:12px;transform:rotateY(180deg) translateZ(2px);-webkit-transform:rotateY(180deg) translateZ(2px);backface-visibility:hidden;-webkit-backface-visibility:hidden;z-index:10;pointer-events:none}
+.stack-card:hover{box-shadow:0 12px 32px -4px rgba(0,0,0,.25)}
+.stack-card.is-dragging{cursor:grabbing!important;box-shadow:0 45px 85px -20px rgba(0,0,0,.35),0 15px 35px -10px rgba(0,0,0,.2);z-index:1000!important}
+.stack-card.is-flipping{pointer-events:none!important;box-shadow:0 50px 100px rgba(0,0,0,.3)!important;opacity:0}
+.stack-card.is-flipping .project-card--stack{opacity:0;transition:opacity .01s linear .35s}
+[data-theme=dark] .stack-card{--card-color:#282828!important;--stack-title-color:#F9F7F1;--stack-tagline-color:rgba(249,247,241,0.8)}
+body.page-transitioning{background-color:var(--color-bg-primary)}
+body.page-transitioning .home-hero,body.page-transitioning .stack-card:not(.is-flipping){opacity:0!important;pointer-events:none!important;transition:opacity .4s ease!important}
+
+/* ── CARD INNER ── */
+.project-card--stack{display:flex;flex-direction:column;width:100%;height:100%;gap:19px}
+.project-card--stack__image-wrap{flex:1;width:100%;position:relative;overflow:hidden;border-radius:8px;background:#f0f0f0}
+.project-card--stack__image-wrap::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 2px 12px rgba(0,0,0,.15);z-index:1}
+.project-card--stack__image{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.project-card--stack__footer{display:flex;flex-direction:column;justify-content:flex-start;gap:12px}
+.project-card--stack__title{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:var(--weight-semibold);color:var(--stack-title-color,var(--color-text-primary));line-height:var(--leading-tight);letter-spacing:var(--tracking-tight)}
+.project-card--stack__tagline{font-family:var(--font-body);font-size:var(--text-sm);color:var(--stack-tagline-color,var(--color-text-secondary));line-height:var(--leading-normal)}
+
+/* card image placeholder art */
+.card-art{width:100%;height:100%;display:flex;align-items:flex-start;justify-content:flex-start;padding:20px;position:relative;overflow:hidden}
+.card-art-mi{background:linear-gradient(145deg,#0d3266 0%,#1565c0 50%,#1e88d4 100%)}
+.card-art-corsair{background:linear-gradient(145deg,#080810 0%,#0f1020 50%,#1a1f3a 100%)}
+.card-art-expertbox{background:linear-gradient(145deg,#064e3b 0%,#065f46 50%,#047857 100%)}
+.card-art-getfit{background:linear-gradient(145deg,#2e1065 0%,#6d28d9 60%,#8b5cf6 100%)}
+
+/* ── CUSTOM CURSOR ── */
+.curzr{box-sizing:border-box;position:fixed;top:-15px;left:-15px;z-index:2147483647;width:30px;height:30px;border-radius:50%;overflow:visible;transition:200ms,transform 2.2ms;user-select:none;pointer-events:none;mix-blend-mode:difference}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes page-slide-in{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes page-slide-out{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-30px)}}
+body:not(.is-home) main,body.is-home main{animation:page-slide-in .6s cubic-bezier(.16,1,.3,1) both}
+body.page-exiting main{animation:page-slide-out .35s cubic-bezier(.55,0,1,.45) forwards}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1280px){
+  .is-home main{height:auto!important;overflow:visible!important}
+  .homepage-canvas{height:auto;min-height:100svh;overflow:visible;display:flex;flex-direction:column;padding:40px 40px 40px calc(40px + var(--space-5))}
+  .home-hero{position:relative;left:auto;top:auto;transform:none;max-width:640px;padding:100px 0 48px;pointer-events:auto}
+  .home-hero__title{font-size:clamp(28px,4vw,56px)}
+  .home-stack{position:relative;left:auto;top:auto;width:100%;overflow:visible}
+  .stack-container{perspective:none;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:0;width:100%}
+  .stack-card{position:relative!important;top:auto!important;left:auto!important;width:100%!important;height:auto!important;aspect-ratio:486/554;opacity:1!important;box-shadow:var(--shadow-md);margin-bottom:24px;transform:none!important}
+}
+@media(max-width:767px){
+  .home-logo{top:12px;left:20px;padding:8px 14px}
+  .nav-cluster{top:12px;right:16px}
+  .navbar-pill{padding:8px 12px 8px 8px}
+  .navbar-pill__links{gap:12px}
+  .navbar-pill__link{display:none}
+  .navbar-pill__contact{font-size:12px;padding:6px 12px}
+  .homepage-canvas{padding:20px}
+  .home-hero{padding:72px 0 32px}
+  .home-hero__title{font-size:clamp(28px,7vw,40px)}
+  .stack-container{grid-template-columns:1fr;gap:16px}
+  .stack-card{width:100%!important;margin:0 0 8px;transform:none!important}
+  .home-stack{padding-bottom:80px}
+  .home-footer .footer__inner{padding:0 20px}
+}
+@media(max-width:480px){
+  .home-hero__title{font-size:var(--text-2xl)}
+}
+@media(min-width:768px) and (max-width:1280px){
+  .container{max-width:100%;padding:0 calc(40px + var(--space-5))}
+}
+@media(prefers-reduced-motion:reduce){
+  .stack-card,.stack-card.is-placed,body{transition:none!important;animation:none!important}
+}
+</style>
+<script>(function(){try{var e,t,n,s=window.innerWidth<=767;s?e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":(e=localStorage.getItem("portfolio-theme"),e||(t=new Date,n=t.getHours()+t.getMinutes()/60,e=n>=7.5&&n<18?"light":"dark")),document.documentElement.setAttribute("data-theme",e)}catch{document.documentElement.setAttribute("data-theme","dark")}})()</script>
+</head>
+<body class="is-home" style="display:flex;flex-direction:column;min-height:100vh">
+
+<!-- HOME LOGO (top-left) -->
+<a href="index.html" class="home-logo" aria-label="Home">
+  <svg class="navbar__logo-svg" viewBox="0 0 127 95" fill="none" aria-hidden="true">
+    <path d="M 6 88 L 30 7 M 54 88 L 30 7 M 16 56 L 44 56" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 68 88 L 68 7 M 68 7 C 68 7 114 7 114 33 C 114 57 68 52 68 52" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- NAV CLUSTER (top-right) -->
+<div class="nav-cluster">
+  <nav class="navbar-pill" aria-label="Main navigation">
+    <div class="navbar-pill__links">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+      <a href="about.html" class="navbar-pill__link">About me</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="navbar-pill__contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<main style="padding-top:var(--nav-height);flex:1">
+
+  <!-- Fixed bottom footer overlay -->
+  <div class="home-footer">
+    <div class="footer__inner">
+      <p class="footer__copyright">© 2026 Andrii Plakhotin. All rights reserved.</p>
+      <p class="footer__made">Made with <a href="https://claude.ai/code" target="_blank" rel="noopener" class="footer__made-link">Claude Code</a> and coffee ☕</p>
+    </div>
+  </div>
+
+  <!-- CANVAS -->
+  <div class="homepage-canvas">
+
+    <!-- HERO (fixed, left side) -->
+    <div class="home-hero">
+      <h1 class="home-hero__title">Hey!<br><span style="white-space:nowrap">I'm <img src="avatar.png" class="hero-avatar" alt="Andrii Plakhotin"><span class="home-hero__accent">Andrii</span>,</span><br><span class="hero-rotate-wrap"><span class="hero-rotate-word">Product Designer</span></span></h1>
+      <p class="home-hero__subtitle">Crafting scalable SaaS platforms and engaging digital products for global markets.</p>
+      <a href="mailto:aplakhotin2@gmail.com" class="btn-primary" style="text-transform:uppercase;letter-spacing:.08em">GET IN TOUCH →</a>
+    </div>
+
+    <!-- DRAGGABLE CARDS -->
+    <div class="home-stack" id="home-stack">
+      <div class="stack-container" id="stack-container">
+
+        <!-- Card 1: Metric Insights -->
+        <a href="metric-insights.html" class="stack-card" aria-label="Metric Insights" style="--card-color:#EEF2FF">
+          <div class="project-card--stack">
+            <div class="project-card--stack__image-wrap">
+              <div class="card-art card-art-mi">
+                <svg width="100%" height="100%" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+                  <!-- Dashboard UI mockup -->
+                  <rect x="20" y="20" width="360" height="240" rx="8" fill="rgba(255,255,255,0.05)"/>
+                  <rect x="32" y="32" width="100" height="14" rx="3" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="32" y="52" width="60" height="8" rx="2" fill="rgba(255,255,255,0.08)"/>
+                  <!-- KPI Cards -->
+                  <rect x="32" y="72" width="78" height="52" rx="6" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="122" y="72" width="78" height="52" rx="6" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="212" y="72" width="78" height="52" rx="6" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="302" y="72" width="66" height="52" rx="6" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="40" y="82" width="30" height="6" rx="2" fill="rgba(255,255,255,0.2)"/>
+                  <rect x="40" y="94" width="50" height="10" rx="2" fill="rgba(255,255,255,0.35)"/>
+                  <rect x="130" y="82" width="30" height="6" rx="2" fill="rgba(255,255,255,0.2)"/>
+                  <rect x="130" y="94" width="50" height="10" rx="2" fill="rgba(255,255,255,0.35)"/>
+                  <!-- Chart area -->
+                  <rect x="32" y="136" width="224" height="110" rx="6" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="268" y="136" width="100" height="110" rx="6" fill="rgba(255,255,255,0.08)"/>
+                  <!-- Bar chart bars -->
+                  <rect x="52" y="208" width="16" height="22" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="76" y="190" width="16" height="40" rx="2" fill="rgba(255,255,255,0.35)"/>
+                  <rect x="100" y="200" width="16" height="30" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="124" y="178" width="16" height="52" rx="2" fill="rgba(30,136,212,0.8)"/>
+                  <rect x="148" y="195" width="16" height="35" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="172" y="185" width="16" height="45" rx="2" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="196" y="175" width="16" height="55" rx="2" fill="rgba(30,136,212,0.6)"/>
+                  <!-- Line on chart -->
+                  <polyline points="52,210 76,192 100,202 124,180 148,197 172,187 196,177 220,190" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="project-card--stack__footer">
+              <h3 class="project-card--stack__title">Metric Insights</h3>
+              <p class="project-card--stack__tagline">Leading design for a BI platform used by 100K+ users. Feature Owner of App Builder — a no-code custom desktop solution.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Corsair -->
+        <a href="https://corsair.com" target="_blank" class="stack-card" aria-label="Corsair iCUE" style="--card-color:#F0F0F4">
+          <div class="project-card--stack">
+            <div class="project-card--stack__image-wrap">
+              <div class="card-art card-art-corsair">
+                <svg width="100%" height="100%" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+                  <!-- iCUE dark UI mockup -->
+                  <rect x="20" y="20" width="100" height="240" rx="6" fill="rgba(255,255,255,0.04)"/>
+                  <rect x="132" y="20" width="248" height="240" rx="6" fill="rgba(255,255,255,0.04)"/>
+                  <!-- Sidebar items -->
+                  <rect x="32" y="36" width="76" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="32" y="72" width="76" height="8" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="32" y="88" width="76" height="8" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="32" y="104" width="76" height="8" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="32" y="120" width="76" height="8" rx="2" fill="rgba(255,255,255,0.04)"/>
+                  <!-- RGB keyboard mockup in main area -->
+                  <rect x="148" y="36" width="216" height="120" rx="6" fill="rgba(255,255,255,0.04)"/>
+                  <!-- Key rows with RGB colors -->
+                  <rect x="158" y="48" width="16" height="16" rx="3" fill="rgba(255,80,80,0.7)"/>
+                  <rect x="180" y="48" width="16" height="16" rx="3" fill="rgba(255,160,40,0.7)"/>
+                  <rect x="202" y="48" width="16" height="16" rx="3" fill="rgba(255,240,0,0.7)"/>
+                  <rect x="224" y="48" width="16" height="16" rx="3" fill="rgba(80,255,80,0.7)"/>
+                  <rect x="246" y="48" width="16" height="16" rx="3" fill="rgba(0,180,255,0.7)"/>
+                  <rect x="268" y="48" width="16" height="16" rx="3" fill="rgba(120,80,255,0.7)"/>
+                  <rect x="290" y="48" width="16" height="16" rx="3" fill="rgba(255,80,180,0.7)"/>
+                  <rect x="312" y="48" width="16" height="16" rx="3" fill="rgba(255,80,80,0.7)"/>
+                  <rect x="334" y="48" width="16" height="16" rx="3" fill="rgba(255,160,40,0.7)"/>
+                  <!-- row 2 -->
+                  <rect x="158" y="72" width="16" height="16" rx="3" fill="rgba(0,180,255,0.5)"/>
+                  <rect x="180" y="72" width="16" height="16" rx="3" fill="rgba(120,80,255,0.5)"/>
+                  <rect x="202" y="72" width="16" height="16" rx="3" fill="rgba(255,80,80,0.5)"/>
+                  <rect x="224" y="72" width="16" height="16" rx="3" fill="rgba(255,240,0,0.5)"/>
+                  <rect x="246" y="72" width="16" height="16" rx="3" fill="rgba(80,255,80,0.5)"/>
+                  <rect x="268" y="72" width="16" height="16" rx="3" fill="rgba(255,160,40,0.5)"/>
+                  <rect x="290" y="72" width="16" height="16" rx="3" fill="rgba(0,180,255,0.5)"/>
+                  <rect x="312" y="72" width="16" height="16" rx="3" fill="rgba(255,80,180,0.5)"/>
+                  <rect x="334" y="72" width="24" height="16" rx="3" fill="rgba(120,80,255,0.5)"/>
+                  <!-- Controls bottom -->
+                  <rect x="148" y="172" width="216" height="72" rx="6" fill="rgba(255,255,255,0.04)"/>
+                  <rect x="158" y="184" width="60" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="158" y="196" width="180" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="158" y="196" width="90" height="4" rx="2" fill="rgba(0,180,255,0.6)"/>
+                  <rect x="158" y="208" width="180" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="158" y="208" width="50" height="4" rx="2" fill="rgba(255,80,80,0.6)"/>
+                  <rect x="158" y="220" width="180" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="158" y="220" width="130" height="4" rx="2" fill="rgba(80,255,80,0.6)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="project-card--stack__footer">
+              <h3 class="project-card--stack__title">Corsair</h3>
+              <p class="project-card--stack__tagline">Designed iCUE desktop app UI/UX across Windows, macOS, and Chrome OS. Improved mobile interface — +25% usability scores.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 3: ExpertBox -->
+        <a href="https://expertbox.io" target="_blank" class="stack-card" aria-label="ExpertBox" style="--card-color:#EDF7F2">
+          <div class="project-card--stack">
+            <div class="project-card--stack__image-wrap">
+              <div class="card-art card-art-expertbox">
+                <svg width="100%" height="100%" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+                  <!-- Healthcare / booking UI mockup -->
+                  <rect x="20" y="20" width="360" height="240" rx="8" fill="rgba(255,255,255,0.05)"/>
+                  <!-- Top nav -->
+                  <rect x="32" y="32" width="80" height="10" rx="3" fill="rgba(255,255,255,0.2)"/>
+                  <rect x="280" y="28" width="88" height="20" rx="10" fill="rgba(255,255,255,0.15)"/>
+                  <!-- Calendar grid -->
+                  <rect x="32" y="56" width="224" height="190" rx="6" fill="rgba(255,255,255,0.08)"/>
+                  <!-- Calendar header -->
+                  <rect x="44" y="68" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <!-- Day labels -->
+                  <rect x="44" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="76" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="108" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="140" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="172" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="204" y="86" width="24" height="6" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <!-- Calendar cells -->
+                  <rect x="44" y="100" width="24" height="24" rx="4" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="76" y="100" width="24" height="24" rx="4" fill="rgba(255,255,255,0.06)"/>
+                  <rect x="108" y="100" width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="140" y="100" width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="172" y="100" width="24" height="24" rx="12" fill="rgba(255,255,255,0.4)"/>
+                  <rect x="204" y="100" width="24" height="24" rx="4" fill="rgba(255,255,255,0.06)"/>
+                  <!-- Event blocks -->
+                  <rect x="44" y="136" width="56" height="18" rx="4" fill="rgba(255,255,255,0.2)"/>
+                  <rect x="108" y="136" width="88" height="18" rx="4" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="44" y="162" width="88" height="18" rx="4" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="140" y="162" width="56" height="18" rx="4" fill="rgba(255,255,255,0.2)"/>
+                  <!-- Right panel -->
+                  <rect x="268" y="56" width="100" height="190" rx="6" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="280" y="68" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <!-- Appointment cards -->
+                  <rect x="280" y="86" width="76" height="40" rx="4" fill="rgba(255,255,255,0.12)"/>
+                  <rect x="288" y="94" width="40" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="288" y="106" width="55" height="5" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="280" y="134" width="76" height="40" rx="4" fill="rgba(255,255,255,0.12)"/>
+                  <rect x="288" y="142" width="40" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="288" y="154" width="55" height="5" rx="1" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="project-card--stack__footer">
+              <h3 class="project-card--stack__title">ExpertBox</h3>
+              <p class="project-card--stack__tagline">Defined design direction for dashboards, payments, bookings, and video calls. Maintained the design system for product scalability.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 4: GetFit & Eat -->
+        <a href="#" class="stack-card" aria-label="GetFit & Eat" style="--card-color:#F5EEFF">
+          <div class="project-card--stack">
+            <div class="project-card--stack__image-wrap">
+              <div class="card-art card-art-getfit">
+                <svg width="100%" height="100%" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+                  <!-- Mobile fitness app mockup -->
+                  <!-- Phone frame left -->
+                  <rect x="40" y="20" width="140" height="240" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                  <rect x="50" y="32" width="120" height="216" rx="12" fill="rgba(255,255,255,0.04)"/>
+                  <!-- Top bar -->
+                  <rect x="62" y="44" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="62" y="58" width="40" height="5" rx="1" fill="rgba(255,255,255,0.12)"/>
+                  <!-- Progress ring -->
+                  <circle cx="110" cy="120" r="40" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="none"/>
+                  <circle cx="110" cy="120" r="40" stroke="rgba(167,139,250,0.8)" stroke-width="8" fill="none" stroke-dasharray="188" stroke-dashoffset="50" stroke-linecap="round" transform="rotate(-90 110 120)"/>
+                  <rect x="96" y="114" width="28" height="12" rx="2" fill="rgba(255,255,255,0.4)"/>
+                  <rect x="100" y="130" width="20" height="6" rx="1" fill="rgba(255,255,255,0.2)"/>
+                  <!-- Stats row -->
+                  <rect x="62" y="172" width="36" height="28" rx="4" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="104" y="172" width="36" height="28" rx="4" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="146" y="172" width="36" height="28" rx="4" fill="rgba(255,255,255,0.08)"/>
+                  <!-- Activity list -->
+                  <rect x="62" y="210" width="96" height="8" rx="2" fill="rgba(255,255,255,0.12)"/>
+                  <rect x="62" y="224" width="80" height="8" rx="2" fill="rgba(255,255,255,0.08)"/>
+
+                  <!-- Phone frame right -->
+                  <rect x="210" y="40" width="140" height="200" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                  <rect x="220" y="52" width="120" height="176" rx="12" fill="rgba(255,255,255,0.04)"/>
+                  <!-- Meal card -->
+                  <rect x="232" y="64" width="96" height="50" rx="8" fill="rgba(255,255,255,0.1)"/>
+                  <rect x="244" y="74" width="50" height="8" rx="2" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="244" y="88" width="35" height="5" rx="1" fill="rgba(255,255,255,0.15)"/>
+                  <rect x="244" y="98" width="60" height="5" rx="1" fill="rgba(255,255,255,0.1)"/>
+                  <!-- Macro bars -->
+                  <rect x="232" y="126" width="96" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="232" y="126" width="60" height="6" rx="3" fill="rgba(167,139,250,0.7)"/>
+                  <rect x="232" y="140" width="96" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="232" y="140" width="40" height="6" rx="3" fill="rgba(244,114,182,0.7)"/>
+                  <rect x="232" y="154" width="96" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="232" y="154" width="75" height="6" rx="3" fill="rgba(96,165,250,0.7)"/>
+                  <!-- Food items list -->
+                  <rect x="232" y="174" width="96" height="16" rx="3" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="232" y="196" width="96" height="16" rx="3" fill="rgba(255,255,255,0.08)"/>
+                  <rect x="232" y="218" width="96" height="16" rx="3" fill="rgba(255,255,255,0.08)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="project-card--stack__footer">
+              <h3 class="project-card--stack__title">GetFit &amp; Eat</h3>
+              <p class="project-card--stack__tagline">Founded and designed a fitness &amp; nutrition app from concept to launch. Led all product decisions, branding, and UI/UX end-to-end.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 5: Dribbble -->
+        <a href="dribbble.html" class="stack-card" aria-label="My Dribbble" style="--card-color:#F9F0F6">
+          <div class="project-card--stack">
+            <div class="project-card--stack__image-wrap">
+              <div class="card-art" style="background:#f0ece8;padding:0">
+                <img src="dribbble-cover.png" alt="Dribbble shots" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit">
+              </div>
+            </div>
+            <div class="project-card--stack__footer">
+              <h3 class="project-card--stack__title">My Dribbble</h3>
+              <p class="project-card--stack__tagline">Visual explorations, UI concepts, and design shots. 40+ works published.</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div><!-- /home-stack -->
+
+  </div><!-- /homepage-canvas -->
+
+</main>
+
+<footer class="footer" style="padding:3rem 0;border-top:1px solid var(--color-border)">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">© 2026 Andrii Plakhotin. All rights reserved.</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">Made with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--color-text-tertiary);text-decoration:underline;text-underline-offset:2px;">Claude Code</a> and coffee ☕</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CUSTOM CURSOR -->
+<div class="curzr" hidden>
+  <svg viewBox="0 0 30 30" width="30" height="30">
+    <defs>
+      <filter id="curzr-motion-blur" x="-100%" y="-100%" width="400%" height="400%">
+        <feGaussianBlur class="curzr-motion-blur" in="SourceGraphic" stdDeviation="0,0"/>
+      </filter>
+    </defs>
+    <circle cx="15" cy="15" r="10" fill="#fff" filter="url(#curzr-motion-blur)"/>
+  </svg>
+</div>
+
+<script>
+// ── ROTATING HERO WORDS ──
+(function() {
+  const words = ['Product Designer', 'Feature Owner', '6+ years', 'Design Strategist'];
+  let idx = 0;
+  const el = document.querySelector('.hero-rotate-word');
+  if (!el) return;
+
+  function cycle() {
+    idx = (idx + 1) % words.length;
+
+    // slide current word out downward
+    el.style.transition = 'transform 0.3s cubic-bezier(0.55,0,1,0.45), opacity 0.25s ease';
+    el.style.transform = 'translateY(110%)';
+    el.style.opacity = '0';
+
+    setTimeout(() => {
+      // snap to top, swap text
+      el.style.transition = 'none';
+      el.style.transform = 'translateY(-110%)';
+      el.style.opacity = '0';
+      el.textContent = words[idx];
+      // force reflow so browser registers the snap position
+      void el.offsetHeight;
+      // slide in from top
+      el.style.transition = 'transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease';
+      el.style.transform = 'translateY(0)';
+      el.style.opacity = '1';
+    }, 300);
+  }
+
+  setInterval(cycle, 2600);
+})();
+
+// ── THEME TOGGLE ──
+window.addEventListener("pageshow", e => { if (e.persisted) { document.body.style.transition=""; document.body.style.opacity="1"; }});
+(function() {
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 767;
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    if (!isMobile()) localStorage.setItem("portfolio-theme", t);
+  }
+  if (isMobile()) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mq.matches ? "dark" : "light");
+    mq.addEventListener("change", e => setTheme(e.matches ? "dark" : "light"));
+    return;
+  }
+  let cur = root.getAttribute("data-theme") || "dark";
+  document.querySelectorAll(".theme-toggle").forEach(btn => {
+    btn.addEventListener("click", () => { cur = cur === "dark" ? "light" : "dark"; setTheme(cur); });
+  });
+  window.addEventListener("storage", e => { if (e.key === "portfolio-theme" && e.newValue) { cur = e.newValue; root.setAttribute("data-theme", cur); }});
+})();
+
+// ── STACK CARDS SCATTER + DRAG ──
+(function() {
+  const cards = document.querySelectorAll(".stack-card");
+  if (!cards.length) return;
+
+  // On mobile / tablet: simple grid
+  if (window.innerWidth <= 1280) {
+    cards.forEach(c => {
+      c.dataset.rot = 0;
+      c.style.transform = "none";
+      c.classList.add("is-placed");
+      if (c.tagName.toLowerCase() === "a") {
+        c.addEventListener("click", e => {
+          const href = c.getAttribute("href");
+          if (!href || href === "#") return;
+          if (c.getAttribute("target") === "_blank") return;
+          e.preventDefault();
+          document.body.style.transition = "opacity 0.3s ease";
+          document.body.style.opacity = "0";
+          setTimeout(() => { window.location.href = href; }, 300);
+        });
+      }
+    });
+    return;
+  }
+
+  let zTop = 10;
+  const rots = [-6, -4, -2, -1, 2, 4, 6];
+  for (let i = rots.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [rots[i], rots[j]] = [rots[j], rots[i]];
+  }
+  const positions = [
+    {xPct:5,  yPct:48},
+    {xPct:28, yPct:52},
+    {xPct:74, yPct:54},
+    {xPct:40, yPct:11},
+    {xPct:64, yPct:14},
+    {xPct:51, yPct:53},
+  ];
+
+  cards.forEach((card, idx) => {
+    const pos = positions[idx % positions.length];
+    const rot = rots[idx % rots.length];
+    card.style.transition = "none";
+    const cw = card.offsetWidth || 400;
+    const ch = card.offsetHeight || 460;
+    const maxX = window.innerWidth - cw - 40;
+    const maxY = window.innerHeight - ch - 40;
+    let x = Math.round(pos.xPct / 100 * window.innerWidth);
+    let y = Math.round(pos.yPct / 100 * window.innerHeight);
+    x = Math.max(40, Math.min(x, maxX));
+    y = Math.max(40, Math.min(y, maxY));
+    card.style.left = x + "px";
+    card.style.top  = y + "px";
+    card.style.transformOrigin = "50% 50%";
+    card.dataset.rot = rot;
+    card.style.transform = `rotate(${rot}deg)`;
+    card.style.zIndex = idx + 1;
+    void card.offsetHeight;
+    card.style.transition = "";
+    card.classList.add("is-placed");
+
+    let dragging = false, didDrag = false;
+    let startX, startY, origLeft, origTop;
+
+    const onDown = e => {
+      if (e.type === "mousedown" && e.button !== 0) return;
+      dragging = true; didDrag = false;
+      zTop++;
+      card.style.zIndex = zTop;
+      card.classList.add("is-dragging");
+      const r = parseFloat(card.dataset.rot) || 0;
+      card.style.transform = `rotate(${r - 2}deg) scale(1.05)`;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      startX = cx; startY = cy;
+      origLeft = card.offsetLeft; origTop = card.offsetTop;
+      if (e.type !== "touchstart") e.preventDefault();
+    };
+    const onMove = e => {
+      if (!dragging) return;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      const dx = cx - startX, dy = cy - startY;
+      if ((Math.abs(dx) > 3 || Math.abs(dy) > 3) && !didDrag) { didDrag = true; card.style.transition = "none"; }
+      if (!didDrag) return;
+      let nx = Math.max(40, Math.min(origLeft + dx, window.innerWidth - card.offsetWidth - 40));
+      let ny = Math.max(40, Math.min(origTop + dy, window.innerHeight - card.offsetHeight - 40));
+      card.style.left = nx + "px";
+      card.style.top  = ny + "px";
+    };
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      card.classList.remove("is-dragging");
+      card.style.transition = "";
+      card.style.transform = `rotate(${card.dataset.rot}deg)`;
+    };
+    card.addEventListener("mousedown", onDown);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    card.addEventListener("touchstart", onDown, {passive: false});
+    window.addEventListener("touchmove", onMove, {passive: false});
+    window.addEventListener("touchend", onUp);
+
+    card.addEventListener("click", e => {
+      if (didDrag) { e.preventDefault(); return; }
+      if (card.tagName.toLowerCase() === "a") {
+        const href = card.getAttribute("href");
+        if (!href || href === "#") return;
+        if (card.getAttribute("target") === "_blank") return;
+        e.preventDefault();
+        const cx = card.offsetLeft + card.offsetWidth / 2;
+        const cy = card.offsetTop + card.offsetHeight / 2;
+        const tx = window.innerWidth / 2 - cx;
+        const ty = window.innerHeight / 2 - cy;
+        zTop += 100;
+        card.style.zIndex = zTop;
+        card.style.transition = "transform 0.8s cubic-bezier(0.65,0,0.35,1), opacity 0.4s ease 0.4s";
+        void card.offsetWidth;
+        document.body.classList.add("page-transitioning");
+        card.classList.add("is-flipping");
+        card.style.transform = `translate(${tx}px,${ty}px) rotate(0deg) scale(5) rotateY(180deg)`;
+        setTimeout(() => { window.location.href = href; }, 800);
+      }
+    });
+  });
+})();
+
+// ── PAGE TRANSITIONS (internal links) ──
+document.addEventListener("click", function(e) {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href) return;
+  if (a.target === "_blank" || href.startsWith("http") || href.startsWith("#") || href.startsWith("mailto:")) return;
+  if (a.classList.contains("stack-card")) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  document.body.classList.add("page-exiting");
+  setTimeout(() => { window.location.href = href; }, 350);
+});
+
+// ── CUSTOM CURSOR ──
+(function() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const c = document.querySelector(".curzr");
+    if (c) c.remove();
+    return;
+  }
+  const el = document.querySelector(".curzr");
+  const blur = document.querySelector(".curzr-motion-blur");
+  if (!el || !blur) return;
+  Object.assign(el.style, {
+    boxSizing:"border-box", position:"fixed", top:"-15px", left:"-15px",
+    zIndex:"2147483647", width:"30px", height:"30px", borderRadius:"50%",
+    overflow:"visible", transition:"200ms, transform 2.2ms",
+    userSelect:"none", pointerEvents:"none", mixBlendMode:"difference"
+  });
+  el.removeAttribute("hidden");
+  document.body.style.cursor = "none";
+  const svg = el.querySelector("svg");
+  if (svg) { svg.style.transition="transform 0.2s cubic-bezier(0.2,0.8,0.2,1)"; svg.style.transformOrigin="center"; }
+  document.body.querySelectorAll("button,a,.stack-card").forEach(node => {
+    node.style.cursor = "none";
+    node.addEventListener("mouseenter", () => { if (svg) svg.style.transform = "scale(3)"; });
+    node.addEventListener("mouseleave", () => { if (svg) svg.style.transform = "scale(1)"; });
+  });
+  let prev = {x:0,y:0}, rot = 0;
+  let blurTimeout;
+  document.onmousemove = e => {
+    const nx = e.pageX + document.body.getBoundingClientRect().x;
+    const ny = e.pageY + document.body.getBoundingClientRect().y;
+    const dx = Math.min(Math.max(prev.x - nx, -20), 20);
+    const dy = Math.min(Math.max(prev.y - ny, -20), 20);
+    prev = {x:nx, y:ny};
+    el.style.transform = `translate3d(${nx}px,${ny}px,0)`;
+    const angle = Math.atan(Math.abs(dy) / Math.abs(dx)) * 57.296;
+    if (!isNaN(angle)) {
+      if (angle <= 45) {
+        rot = dx * dy >= 0 ? +angle : -angle;
+        blur.setAttribute("stdDeviation", Math.abs(dx/2) + ",0");
+      } else {
+        rot = dx * dy <= 0 ? 180 - angle : angle;
+        blur.setAttribute("stdDeviation", Math.abs(dy/2) + ",0");
+      }
+    }
+    el.style.transform += ` rotate(${rot}deg)`;
+    clearTimeout(blurTimeout);
+    blurTimeout = setTimeout(() => blur.setAttribute("stdDeviation","0,0"), 50);
+  };
+})();
+</script>
+</body>
+</html>

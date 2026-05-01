@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrii Plakhotin — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F3EE;
+  --bg2: #ECEAE4;
+  --bg3: #E4E1D9;
+  --black: #1A1A18;
+  --text: #1A1A18;
+  --text2: #6B6860;
+  --text3: #9E9C97;
+  --border: rgba(26,26,24,0.1);
+  --font: 'Inter', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.5; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(245,243,238,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 8px 8px 24px;
+  white-space: nowrap;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+}
+.nav-logo {
+  font-size: 14px; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--text); text-decoration: none; margin-right: 32px;
+}
+.nav-links { display: flex; gap: 4px; list-style: none; margin-right: 8px; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--text2);
+  text-decoration: none; padding: 6px 14px; border-radius: 100px;
+  transition: all 0.18s;
+}
+.nav-links a:hover { background: var(--bg2); color: var(--text); }
+.nav-email {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--black); color: #fff;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none; padding: 10px 18px; border-radius: 100px;
+  cursor: pointer; border: none; font-family: var(--font);
+  transition: opacity 0.2s;
+}
+.nav-email:hover { opacity: 0.8; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 60px 48px 0;
+  display: flex; flex-direction: column;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 380px 1fr;
+  align-items: center; flex: 1;
+  padding-top: 40px; padding-bottom: 80px;
+}
+.hero-photo-col { display: flex; align-items: center; justify-content: center; }
+.hero-circle {
+  width: 310px; height: 310px; border-radius: 50%;
+  overflow: hidden; background: #ccc; flex-shrink: 0;
+}
+.hero-circle img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: top center; display: block;
+  filter: grayscale(0%);
+}
+.hero-text-col { padding-left: 56px; }
+h1.hero-title {
+  font-size: clamp(60px, 7.5vw, 106px);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -0.04em; color: var(--text);
+  margin-bottom: 28px;
+}
+.hero-desc {
+  font-size: 17px; font-weight: 400; line-height: 1.7;
+  color: var(--text2); max-width: 460px;
+}
+.hero-desc p + p { margin-top: 14px; }
+
+/* ── QUOTE DIVIDER ── */
+.quote-section {
+  padding: 0 48px 80px;
+  text-align: left;
+}
+.quote-text {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1.15; color: var(--text);
+  max-width: 900px;
+}
+.quote-sub {
+  margin-top: 10px;
+  font-size: 14px; color: var(--text3); font-weight: 400;
+}
+
+/* ── SECTIONS ── */
+section { padding: 80px 48px; }
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between; margin-bottom: 28px;
+}
+.section-title { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.section-sub {
+  font-size: 13px; color: var(--text3);
+  text-decoration: none; transition: color 0.18s;
+}
+.section-sub:hover { color: var(--text); }
+
+/* ── WORKS GRID ── */
+#works { background: var(--bg); padding-top: 0; }
+.works-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.work-card {
+  background: #FFFFFF; overflow: hidden;
+  text-decoration: none; color: inherit; display: block;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(26,26,24,0.1);
+}
+.work-card-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; border-radius: 16px 16px 0 0; }
+.wbg-mi { background: linear-gradient(140deg,#0d3875,#1565c0,#1e88d4); width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.wbg-corsair { background: linear-gradient(140deg,#111,#1a1f3a,#0d2157); width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.wbg-expertbox { background: linear-gradient(140deg,#1b4332,#2d6a4f,#52b788); width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.wbg-getfit { background: linear-gradient(140deg,#3a0058,#6a1b9a,#ab47bc); width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.wbg-label { font-size: 40px; font-weight: 900; letter-spacing: -0.04em; color: rgba(255,255,255,0.18); }
+.work-card-body { padding: 16px 20px 20px; display: flex; align-items: flex-end; justify-content: space-between; }
+.work-card-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; }
+.work-card-role { font-size: 12px; color: var(--text3); }
+.work-arrow { font-size: 18px; color: var(--text3); opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translate(-4px, 4px); }
+.work-card:hover .work-arrow { opacity: 1; transform: translate(0,0); }
+
+/* ── DRIBBBLE ── */
+#dribbble { background: var(--bg); padding-top: 0; }
+.dribbble-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.d-card {
+  background: #FFFFFF; overflow: hidden;
+  text-decoration: none; color: inherit; display: block;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.d-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(26,26,24,0.1);
+}
+.d-card.wide { grid-column: 1 / -1; }
+.d-media { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: var(--bg2); border-radius: 16px 16px 0 0; }
+.d-card.wide .d-media { aspect-ratio: 21/9; }
+.d-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.d-media .d-embed {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+  pointer-events: none;
+}
+.d-media .d-embed-wrap {
+  position: absolute; inset: -1px;
+  overflow: hidden;
+}
+/* Scale Dribbble embed iframe to fill container, hiding chrome */
+.d-embed-frame {
+  position: absolute;
+  border: none;
+  /* Dribbble embed is ~480x360 native; we scale it up */
+  width: 480px; height: 360px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  pointer-events: none;
+}
+.d-meta { padding: 14px 18px 18px; display: flex; align-items: flex-end; justify-content: space-between; }
+.d-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; color: var(--text); }
+.d-link { color: inherit; text-decoration: none; }
+.d-link:hover { text-decoration: underline; }
+.d-stats { font-size: 12px; color: var(--text3); }
+.d-arrow { font-size: 16px; color: var(--text3); text-decoration: none; opacity: 0; transition: opacity 0.2s; }
+.d-card:hover .d-arrow { opacity: 1; }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--black); color: #fff;
+  padding-top: 120px; padding-bottom: 120px;
+}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-heading {
+  font-size: clamp(40px, 5vw, 64px); font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 32px; color: #fff;
+}
+.about-text { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.5); }
+.about-text + .about-text { margin-top: 16px; }
+.sb + .sb { margin-top: 32px; }
+.sb-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 100px; transition: all 0.18s; }
+.tag:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--bg2); }
+.exp-list { display: flex; flex-direction: column; }
+.exp-row { display: grid; grid-template-columns: 175px 1fr auto; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.exp-row:last-child { border-bottom: none; }
+.exp-period { font-size: 12px; color: var(--text3); padding-top: 3px; }
+.exp-company { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
+.exp-role { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+.exp-desc { font-size: 14px; color: var(--text2); line-height: 1.7; max-width: 540px; }
+.exp-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; white-space: nowrap; border: 1px solid var(--border); color: var(--text3); }
+.exp-badge.now { color: #1a7a4a; border-color: rgba(26,122,74,0.25); background: rgba(26,122,74,0.07); }
+
+/* ── FOOTER ── */
+footer { background: var(--bg); padding: 80px 48px; border-top: 1px solid var(--border); }
+.footer-inner { display: flex; align-items: flex-start; justify-content: space-between; }
+.footer-cta h3 { font-size: clamp(32px,4vw,52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+.footer-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--black); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; padding: 14px 28px; border-radius: 100px; transition: opacity 0.2s; }
+.footer-btn:hover { opacity: 0.8; }
+.footer-links { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; padding-top: 6px; }
+.footer-link { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.18s; }
+.footer-link:hover { color: var(--text); }
+.footer-bottom { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(2) { transition-delay: 0.07s; }
+.reveal:nth-child(3) { transition-delay: 0.14s; }
+.reveal:nth-child(4) { transition-delay: 0.21s; }
+.reveal:nth-child(5) { transition-delay: 0.28s; }
+
+@media (max-width: 768px) {
+  nav { top: 12px; padding: 8px 8px 8px 18px; }
+  .nav-logo { margin-right: 16px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-photo-inline { width: 52px; height: 52px; }
+  h1.hero-title { font-size: 42px; }
+  .quote-section { padding: 0 24px 60px; }
+  section { padding: 56px 24px; }
+  .works-grid, .dribbble-grid { grid-template-columns: 1fr; gap: 16px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .exp-row { grid-template-columns: 1fr; gap: 6px; }
+  .footer-inner { flex-direction: column; gap: 40px; }
+  .footer-links { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Andrii Plakhotin</a>
+  <ul class="nav-links">
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+  <button class="nav-email" id="copyEmail">
+    aplakhotin2@gmail.com
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo-col">
+      <div class="hero-circle">
+        <img src="DSC_5738.jpg" alt="Andrii Plakhotin"
+          onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="hero-text-col">
+      <h1 class="hero-title">Sr. Product<br>Designer</h1>
+      <div class="hero-desc">
+        <p>Currently leading design at Metric Insights — shaping a BI platform used by 100K+ users and owning the App Builder feature end-to-end.</p>
+        <p>I bridge design and engineering, turning Figma into production-ready code using AI tools like Cursor and Builder.io.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<div class="quote-section">
+  <p class="quote-text">I'm as good as<br>the next thing I design</p>
+  <p class="quote-sub">Inspired by Jimmy Carr</p>
+</div>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-header">
+    <span class="section-title">My Works</span>
+    <span class="section-sub">(2020–2026)</span>
+  </div>
+  <div class="works-grid">
+    <a href="https://metricinsights.com" target="_blank" class="work-card reveal">
+      <div class="work-card-img">
+        <div class="wbg-mi"><span class="wbg-label">MI</span></div>
+      </div>
+      <div class="work-card-body">
+        <div>
+          <div class="work-card-name">Metric Insights Inc</div>
+          <div class="work-card-role">Senior Product Designer &amp; Feature Owner</div>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+    <a href="https://corsair.com" target="_blank" class="work-card reveal">
+      <div class="work-card-img">
+        <div class="wbg-corsair"><span class="wbg-label">iCUE</span></div>
+      </div>
+      <div class="work-card-body">
+        <div>
+          <div class="work-card-name">Corsair</div>
+          <div class="work-card-role">Product Designer</div>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+    <a href="https://expertbox.io" target="_blank" class="work-card reveal">
+      <div class="work-card-img">
+        <div class="wbg-expertbox"><span class="wbg-label">EB</span></div>
+      </div>
+      <div class="work-card-body">
+        <div>
+          <div class="work-card-name">ExpertBox</div>
+          <div class="work-card-role">Product Designer</div>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+    <a href="#" class="work-card reveal">
+      <div class="work-card-img">
+        <div class="wbg-getfit"><span class="wbg-label">GF</span></div>
+      </div>
+      <div class="work-card-body">
+        <div>
+          <div class="work-card-name">GetFit &amp; Eat</div>
+          <div class="work-card-role">Founder &amp; Designer</div>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- DRIBBBLE -->
+<section id="dribbble" style="padding-top:0;">
+  <div class="section-header">
+    <span class="section-title">My Dribbble</span>
+    <a href="https://dribbble.com/andrey_plakhotin" target="_blank" class="section-sub">View all →</a>
+  </div>
+  <div class="dribbble-grid">
+
+    <div class="d-card reveal">
+      <div class="d-media" id="dm1">
+        <iframe class="d-embed-frame" id="df1"
+          src="https://dribbble.com/shots/15467437-E-Commerce-App-Landing-Hero-Section/attachments/embed"
+          scrolling="no" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="d-meta">
+        <div>
+          <div class="d-title"><a href="https://dribbble.com/shots/15467437" target="_blank" class="d-link">E-Commerce App Landing Hero Section</a></div>
+          <div class="d-stats">500k+ views · 1400+ likes</div>
+        </div>
+        <a href="https://dribbble.com/shots/15467437" target="_blank" class="d-arrow">↗</a>
+      </div>
+    </div>
+
+    <div class="d-card reveal">
+      <div class="d-media" id="dm2">
+        <iframe class="d-embed-frame" id="df2"
+          src="https://dribbble.com/shots/15392122-Banking-App-Hero-Landing-Animation/attachments/embed"
+          scrolling="no" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="d-meta">
+        <div>
+          <div class="d-title"><a href="https://dribbble.com/shots/15392122" target="_blank" class="d-link">Banking App Hero Landing Animation</a></div>
+          <div class="d-stats">174k+ views · 400+ likes</div>
+        </div>
+        <a href="https://dribbble.com/shots/15392122" target="_blank" class="d-arrow">↗</a>
+      </div>
+    </div>
+
+    <div class="d-card reveal">
+      <div class="d-media" id="dm3">
+        <iframe class="d-embed-frame" id="df3"
+          src="https://dribbble.com/shots/15777413-Vacation-Rental-Service-Landing-Animation/attachments/embed"
+          scrolling="no" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="d-meta">
+        <div>
+          <div class="d-title"><a href="https://dribbble.com/shots/15777413" target="_blank" class="d-link">Vacation Rental Service Landing Animation</a></div>
+          <div class="d-stats">100k+ views · 400+ likes</div>
+        </div>
+        <a href="https://dribbble.com/shots/15777413" target="_blank" class="d-arrow">↗</a>
+      </div>
+    </div>
+
+    <div class="d-card reveal">
+      <div class="d-media" id="dm4">
+        <iframe class="d-embed-frame" id="df4"
+          src="https://dribbble.com/shots/16256501-HR-Management-Platform/attachments/embed"
+          scrolling="no" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="d-meta">
+        <div>
+          <div class="d-title"><a href="https://dribbble.com/shots/16256501" target="_blank" class="d-link">HR Management Platform</a></div>
+          <div class="d-stats">200k+ views · 550+ likes</div>
+        </div>
+        <a href="https://dribbble.com/shots/16256501" target="_blank" class="d-arrow">↗</a>
+      </div>
+    </div>
+
+    <div class="d-card wide reveal">
+      <div class="d-media" id="dm5" style="aspect-ratio:21/9;">
+        <iframe class="d-embed-frame" id="df5"
+          src="https://dribbble.com/shots/16778052-Online-Books-Platform-Listen-and-Read/attachments/embed"
+          scrolling="no" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="d-meta">
+        <div>
+          <div class="d-title"><a href="https://dribbble.com/shots/16778052" target="_blank" class="d-link">Online Books Platform — Listen and Read</a></div>
+          <div class="d-stats">86k+ views · 250+ likes</div>
+        </div>
+        <a href="https://dribbble.com/shots/16778052" target="_blank" class="d-arrow">↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <h2 class="about-heading">Product<br>Designer &amp;<br>Vibe-Coder</h2>
+      <p class="about-text">6+ years crafting scalable SaaS platforms, complex web apps, and mobile solutions for global markets. Expertise in BI, Healthcare, and B2B products.</p>
+      <p class="about-text">I work at the intersection of design and AI-driven dev — turning Figma directly into production code with Cursor, Builder.io, and Claude.</p>
+      <p class="about-text">Based in Dnipro, Ukraine 🇺🇦 · Remote worldwide.</p>
+    </div>
+    <div>
+      <div class="sb">
+        <div class="sb-label">Core Skills</div>
+        <div class="tags">
+          <span class="tag">UX/UI Design</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Wireframing</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">User Research</span>
+          <span class="tag">Interaction Design</span>
+          <span class="tag">Visual Design</span>
+          <span class="tag">Mobile &amp; Desktop</span>
+          <span class="tag">Agile / Scrum</span>
+        </div>
+      </div>
+      <div class="sb">
+        <div class="sb-label">Tools</div>
+        <div class="tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Cursor</span>
+          <span class="tag">Builder.io</span>
+          <span class="tag">Claude</span>
+          <span class="tag">ChatGPT</span>
+          <span class="tag">Linear</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Notion</span>
+        </div>
+      </div>
+      <div class="sb">
+        <div class="sb-label">Languages</div>
+        <div class="tags">
+          <span class="tag">Ukrainian — Native</span>
+          <span class="tag">English — Upper-Intermediate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header"><span class="section-title">Experience</span></div>
+  <div class="exp-list">
+
+    <div class="exp-row reveal">
+      <div class="exp-period">Jul 2022 — Present</div>
+      <div>
+        <div class="exp-company">Metric Insights Inc. — San Francisco (Remote)</div>
+        <div class="exp-role">Senior Product Designer + Feature Owner</div>
+        <div class="exp-desc">Led design for the core BI platform, iOS/Android apps, and customer portals used by 100K+ users. Feature Owner of App Builder — shipped a no-code custom desktop app solution leading a team of 2 devs. Redesigned the company website, boosting conversion by 30%.</div>
+      </div>
+      <span class="exp-badge now">Current</span>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-period">Feb 2022 — Jul 2022</div>
+      <div>
+        <div class="exp-company">Corsair — Fremont, CA (Remote)</div>
+        <div class="exp-role">Middle Product Designer</div>
+        <div class="exp-desc">Designed the iCUE desktop app UI/UX across Windows, macOS, and Chrome OS. Improved mobile interface — +25% usability scores. Collaborated with design manager, business analysts, QA, and developers.</div>
+      </div>
+      <span class="exp-badge">5 mo</span>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-period">Mar 2020 — Feb 2022</div>
+      <div>
+        <div class="exp-company">RubyGarage — Dnipro, Ukraine</div>
+        <div class="exp-role">Junior Product Designer</div>
+        <div class="exp-desc">Defined design direction for ExpertBox — dashboards, payments, bookings, and video calls. Collaborated with PMs, engineers, clients, and UX writers. Maintained and evolved the design system for product scalability.</div>
+      </div>
+      <span class="exp-badge">2 yr</span>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-period">2021 — 2023</div>
+      <div>
+        <div class="exp-company">GetFit &amp; Eat — Personal Project</div>
+        <div class="exp-role">Founder &amp; Designer</div>
+        <div class="exp-desc">Founded and designed a fitness & nutrition app from concept to launch. Led all product decisions, user research, branding, and UI/UX design end-to-end.</div>
+      </div>
+      <span class="exp-badge">Side project</span>
+    </div>
+
+  </div>
+
+  <div style="margin-top:56px;padding-top:40px;border-top:1px solid var(--border);">
+    <div class="section-title" style="margin-bottom:16px;font-size:15px;">Education</div>
+    <div style="display:flex;gap:8px;align-items:baseline;">
+      <span style="font-size:18px;font-weight:700;letter-spacing:-0.01em;">Alfred Nobel University</span>
+      <span style="font-size:14px;color:var(--text3);">Management Faculty · 2017–2021 · Dnipro, Ukraine</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-cta">
+      <h3>Let's work<br>together</h3>
+      <a href="mailto:aplakhotin2@gmail.com" class="footer-btn">Get in touch →</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://t.me/andrey_plakhotin" target="_blank" class="footer-link">Telegram ↗</a>
+      <a href="https://dribbble.com/andrey_plakhotin" target="_blank" class="footer-link">Dribbble ↗</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="footer-link">aplakhotin2@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Andrii Plakhotin</span>
+    <span>Product Designer · Dnipro, Ukraine</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+const btn = document.getElementById('copyEmail');
+btn.addEventListener('click', () => {
+  navigator.clipboard?.writeText('aplakhotin2@gmail.com').then(() => {
+    const orig = btn.innerHTML;
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  });
+});
+
+// Scale Dribbble embed iframes to fill their containers
+// Dribbble embed viewport is 480×360
+const EMBED_W = 480, EMBED_H = 360;
+function scaleEmbeds() {
+  document.querySelectorAll('.d-media').forEach(container => {
+    const iframe = container.querySelector('.d-embed-frame');
+    if (!iframe) return;
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+    const scaleX = cw / EMBED_W;
+    const scaleY = ch / EMBED_H;
+    const scale = Math.max(scaleX, scaleY) * 1.02; // slight overscale to hide seams
+    iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    iframe.style.transformOrigin = 'center center';
+  });
+}
+window.addEventListener('load', scaleEmbeds);
+window.addEventListener('resize', scaleEmbeds);
+scaleEmbeds();
+</script>
+</body>
+</html>

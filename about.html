@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us" suppresshydrationwarning>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Andrii Plakhotin</title>
+<meta name="description" content="Senior Product Designer & Vibe-Coder — 6+ years crafting scalable SaaS, web apps, and mobile solutions for global markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme=dark]{
+  color-scheme:dark;
+  --color-bg-primary:#14150d;
+  --color-bg-secondary:#1c1e16;
+  --color-bg-tertiary:#232620;
+  --color-bg-surface:rgba(255,255,255,0.03);
+  --color-bg-surface-hover:rgba(255,255,255,0.06);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#F4A070;
+  --color-text-primary:#e8e3d8;
+  --color-text-secondary:#a8a398;
+  --color-text-tertiary:#6e6b63;
+  --color-text-inverse:#14150d;
+  --color-border:rgba(255,255,255,0.08);
+  --color-border-hover:rgba(255,255,255,0.15);
+  --color-success:#8a9e8f;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.5);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.6);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --color-bg-primary:#f2f0e8;
+  --color-bg-secondary:#f9f7f1;
+  --color-bg-tertiary:#e8e5dc;
+  --color-bg-surface:rgba(0,0,0,0.025);
+  --color-bg-surface-hover:rgba(0,0,0,0.05);
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#D4712E;
+  --color-text-primary:#1a1b14;
+  --color-text-secondary:#524f45;
+  --color-text-tertiary:#7a7670;
+  --color-text-inverse:#f9f7f1;
+  --color-border:rgba(0,0,0,0.08);
+  --color-border-hover:rgba(0,0,0,0.15);
+  --color-success:#5e8464;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.09);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.11);
+}
+:root{
+  --font:'Inter',system-ui,sans-serif;
+  --nav-height:72px;
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --duration-fast:150ms;
+  --duration-slower:800ms;
+}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font);font-size:16px;line-height:1.6;color:var(--color-text-primary);background:var(--color-bg-primary);transition:background .5s,color .5s;display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ── HOME LOGO (top-left) ── */
+.home-logo{position:fixed;top:28px;left:40px;z-index:1000;display:flex;align-items:center;padding:12px 20px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.home-logo:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar__logo-svg{height:32px;width:auto;color:var(--color-text-primary)}
+
+/* ── NAV CLUSTER (top-right, no badge) ── */
+.nav-cluster{position:fixed;top:28px;right:28px;z-index:1000;display:flex;align-items:center;gap:10px}
+.navbar-pill{position:static;display:flex;align-items:center;padding:12px 20px 12px 12px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.navbar-pill:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar-pill__links{display:flex;align-items:center;gap:20px}
+.navbar-pill__link{font-size:14px;font-weight:500;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;transition:color var(--duration-fast)}
+.navbar-pill__link:hover,.navbar-pill__link--active{color:var(--color-text-primary)}
+.navbar-pill__contact{font-size:14px;font-weight:600;color:#fff;background:var(--color-accent-warm);padding:8px 16px;border-radius:9999px;letter-spacing:0.05em;text-transform:uppercase;transition:background var(--duration-fast),transform var(--duration-fast)}
+.navbar-pill__contact:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9999px;background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text-secondary);cursor:pointer;transition:border-color var(--duration-fast),background var(--duration-fast),color var(--duration-fast)}
+.theme-toggle:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);color:var(--color-text-primary)}
+.theme-toggle__icon{width:18px;height:18px}
+.theme-toggle__icon--sun{display:block}
+.theme-toggle__icon--moon{display:none}
+[data-theme=light] .theme-toggle__icon--sun{display:none}
+[data-theme=light] .theme-toggle__icon--moon{display:block}
+
+/* ── LAYOUT ── */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+main{padding-top:var(--nav-height);flex:1}
+.section{padding:80px 0}
+
+/* ── ABOUT INTRO ── */
+.about-intro{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+.about-intro__image{aspect-ratio:3/4;border-radius:32px;overflow:hidden;background:var(--color-bg-tertiary)}
+.about-intro__image img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.about-intro__greeting{font-size:14px;color:var(--color-text-tertiary);margin-bottom:40px}
+.about-intro__statement{font-size:clamp(22px,2.4vw,34px);font-weight:800;letter-spacing:-0.03em;line-height:1.2;color:var(--color-text-primary);margin-bottom:40px}
+.about-intro__two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:15px;color:var(--color-text-secondary);line-height:1.75}
+
+/* ── SECTION HEADING ── */
+.section-heading{margin-bottom:48px}
+.section-heading__title{font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:var(--color-text-primary)}
+
+/* ── SKILLS DARK SECTION ── */
+/* light theme → dark block; dark theme → light block */
+.skills-dark{background:#111110;padding:80px 0;margin-bottom:80px}
+[data-theme=dark] .skills-dark{background:#f2f0e8}
+.skills-dark__groups{display:flex;flex-direction:column;gap:40px}
+.skills-dark__label{display:block;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,240,232,0.3);margin-bottom:16px}
+[data-theme=dark] .skills-dark__label{color:rgba(26,27,20,0.4)}
+.skills-dark__tags{display:flex;flex-wrap:wrap;gap:8px}
+.skills-dark__tag{padding:8px 18px;border:1px solid rgba(242,240,232,0.14);border-radius:9999px;font-size:13px;font-weight:500;color:rgba(242,240,232,0.75);background:rgba(242,240,232,0.04);transition:border-color 0.15s,background 0.15s,color 0.15s;cursor:default}
+.skills-dark__tag:hover{border-color:rgba(242,240,232,0.3);background:rgba(242,240,232,0.08);color:#f2f0e8}
+[data-theme=dark] .skills-dark__tag{border-color:rgba(26,27,20,0.15);color:rgba(26,27,20,0.75);background:rgba(26,27,20,0.04)}
+[data-theme=dark] .skills-dark__tag:hover{border-color:rgba(26,27,20,0.35);background:rgba(26,27,20,0.08);color:#1a1b14}
+
+/* ── EXPERIENCE — grid layout like Image #3 ── */
+.exp-list{}
+.exp-row{display:grid;grid-template-columns:175px 1fr auto;gap:24px;padding:32px 0;border-bottom:1px solid var(--color-border);align-items:start}
+.exp-row:first-child{border-top:1px solid var(--color-border)}
+.exp-period{font-size:12px;color:var(--color-text-tertiary);padding-top:4px;line-height:1.5}
+.exp-company{font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px}
+.exp-role{font-size:22px;font-weight:700;letter-spacing:-0.025em;color:var(--color-text-primary);margin-bottom:10px}
+.exp-desc{font-size:14px;color:var(--color-text-secondary);line-height:1.75;max-width:540px}
+.exp-badge{font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;padding:6px 14px;border-radius:9999px;white-space:nowrap;border:1px solid var(--color-border);color:var(--color-text-tertiary);margin-top:4px}
+.exp-badge--current{color:var(--color-success);border-color:rgba(138,158,143,0.3);background:rgba(138,158,143,0.08)}
+
+/* ── EDUCATION ── */
+.edu-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:24px 0;border-top:1px solid var(--color-border)}
+.edu-name{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--color-text-primary)}
+.edu-meta{font-size:14px;color:var(--color-text-tertiary)}
+
+/* ── FOOTER ── */
+.page-footer{padding:80px 0;border-top:1px solid var(--color-border)}
+.footer-heading{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--color-text-primary);margin-bottom:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--color-text-primary);color:var(--color-text-inverse);font-size:14px;font-weight:600;letter-spacing:0.01em;padding:14px 28px;border-radius:9999px;text-decoration:none;transition:opacity 0.2s}
+.btn-primary:hover{opacity:0.8}
+.footer-links{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.footer-link{font-size:13px;color:var(--color-text-secondary);transition:color var(--duration-fast)}
+.footer-link:hover{color:var(--color-text-primary)}
+.footer-bottom{margin-top:56px;padding-top:20px;border-top:1px solid var(--color-border);display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-tertiary);flex-wrap:wrap;gap:8px}
+.footer-bottom a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity var(--duration-slower) var(--ease-out-expo),transform var(--duration-slower) var(--ease-out-expo)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:100ms}
+.reveal-delay-2{transition-delay:200ms}
+
+/* ── PAGE TRANSITION ── */
+@keyframes slide-in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slide-out{from{opacity:1}to{opacity:0;transform:translateX(-20px)}}
+main{animation:slide-in .5s cubic-bezier(.16,1,.3,1) both}
+body.page-exiting main{animation:slide-out .3s ease forwards}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .about-intro{grid-template-columns:1fr 1fr;gap:40px}
+  .exp-row{grid-template-columns:140px 1fr auto;gap:16px}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .home-logo{top:12px;left:20px;padding:8px 14px}
+  .nav-cluster{top:12px;right:16px}
+  .navbar-pill{padding:8px 12px 8px 8px}
+  .navbar-pill__links{gap:12px}
+  .navbar-pill__link{display:none}
+  .navbar-pill__contact{font-size:12px;padding:6px 12px}
+  .theme-toggle{width:34px;height:34px}
+  .about-intro{grid-template-columns:1fr;gap:32px}
+  .about-intro__image{max-height:440px;aspect-ratio:4/3}
+  .about-intro__two-col{grid-template-columns:1fr}
+  .exp-row{grid-template-columns:1fr;gap:6px}
+  .exp-badge{width:fit-content}
+  .footer-bottom{flex-direction:column}
+  .skills-dark{padding:56px 0}
+}
+@media(max-width:480px){
+  .home-logo{top:10px;left:16px}
+  .nav-cluster{top:10px;right:12px}
+  .skills-dark{padding:48px 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script>(function(){try{var e,t,n,s=window.innerWidth<=767;s?e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":(e=localStorage.getItem("portfolio-theme"),e||(t=new Date,n=t.getHours()+t.getMinutes()/60,e=n>=7.5&&n<18?"light":"dark")),document.documentElement.setAttribute("data-theme",e)}catch{document.documentElement.setAttribute("data-theme","dark")}})()</script>
+</head>
+<body>
+
+<!-- HOME LOGO (top-left) -->
+<a href="index.html" class="home-logo" aria-label="Home">
+  <svg class="navbar__logo-svg" viewBox="0 0 127 95" fill="none" aria-hidden="true">
+    <path d="M 6 88 L 30 7 M 54 88 L 30 7 M 16 56 L 44 56" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 68 88 L 68 7 M 68 7 C 68 7 114 7 114 33 C 114 57 68 52 68 52" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- NAV CLUSTER (top-right) -->
+<div class="nav-cluster">
+  <nav class="navbar-pill" aria-label="Main navigation">
+    <div class="navbar-pill__links">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+      <a href="about.html" class="navbar-pill__link navbar-pill__link--active">About me</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="navbar-pill__contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ABOUT INTRO -->
+  <section class="section">
+    <div class="container">
+      <div class="about-intro">
+
+        <div class="about-intro__image reveal">
+          <img src="photo.jpg" alt="Andrii Plakhotin">
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <p class="about-intro__greeting">Hey:)</p>
+          <h1 class="about-intro__statement">I'm Andrii, a Ukrainian Product Designer based in Dnipro, with 6+ years of experience. I'm currently building an analytic product, called Metric Insights, where I lead the design of the core product and additionally I'm a feature owner of the App Builder feature.</h1>
+          <div class="about-intro__two-col">
+            <p>I started my design career as a UI/UX designer at RubyGarage company. Over the years, I've gained diverse experience working as a freelancer, company designer, product designer, and even founding an app called GetFit &amp; Eat, that was successfully sold.</p>
+            <p>Outside of work, I enjoy spending time with my wife and my son, playing football and writing and recording own songs.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS DARK -->
+  <section class="skills-dark reveal">
+    <div class="container">
+      <div class="skills-dark__groups">
+        <div class="skills-dark__group">
+          <span class="skills-dark__label">TOP-NOTCH Skills</span>
+          <div class="skills-dark__tags">
+            <span class="skills-dark__tag">Visual Design</span>
+            <span class="skills-dark__tag">Pixel-perfect UI</span>
+            <span class="skills-dark__tag">Design systems</span>
+            <span class="skills-dark__tag">UX Research and Usability Testing</span>
+            <span class="skills-dark__tag">Prototyping</span>
+            <span class="skills-dark__tag">Design strategy</span>
+            <span class="skills-dark__tag">Design management</span>
+            <span class="skills-dark__tag">Feature ownership</span>
+            <span class="skills-dark__tag">Vibe-coding (Claude code)</span>
+          </div>
+        </div>
+        <div class="skills-dark__group">
+          <span class="skills-dark__label">Tools</span>
+          <div class="skills-dark__tags">
+            <span class="skills-dark__tag">Figma</span>
+            <span class="skills-dark__tag">Cursor</span>
+            <span class="skills-dark__tag">Builder.io</span>
+            <span class="skills-dark__tag">Claude</span>
+            <span class="skills-dark__tag">ChatGPT</span>
+            <span class="skills-dark__tag">Linear</span>
+            <span class="skills-dark__tag">Jira</span>
+            <span class="skills-dark__tag">Notion</span>
+          </div>
+        </div>
+        <div class="skills-dark__group">
+          <span class="skills-dark__label">Languages</span>
+          <div class="skills-dark__tags">
+            <span class="skills-dark__tag">Ukrainian — Native</span>
+            <span class="skills-dark__tag">English — Upper-Intermediate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-heading reveal">
+        <h2 class="section-heading__title">Experience</h2>
+      </div>
+      <div class="exp-list">
+
+        <div class="exp-row reveal">
+          <div class="exp-period">Jul 2022 — Present</div>
+          <div>
+            <div class="exp-company">Metric Insights Inc. — San Francisco (Remote)</div>
+            <div class="exp-role">Senior Product Designer + Feature Owner</div>
+            <div class="exp-desc">Led design for the core BI platform, iOS/Android apps, and customer portals used by 100K+ users. Feature Owner of App Builder — shipped a no-code custom desktop app solution leading a team of 2 devs. Redesigned the company website, boosting conversion by 30%.</div>
+          </div>
+          <span class="exp-badge exp-badge--current">Current</span>
+        </div>
+
+        <div class="exp-row reveal">
+          <div class="exp-period">Feb 2022 — Jul 2022</div>
+          <div>
+            <div class="exp-company">Corsair — Fremont, CA (Remote)</div>
+            <div class="exp-role">Middle Product Designer</div>
+            <div class="exp-desc">Designed the iCUE desktop app UI/UX across Windows, macOS, and Chrome OS. Improved mobile interface — +25% usability scores. Collaborated with design manager, business analysts, QA, and developers.</div>
+          </div>
+          <span class="exp-badge">5 Mo</span>
+        </div>
+
+        <div class="exp-row reveal">
+          <div class="exp-period">Mar 2020 — Feb 2022</div>
+          <div>
+            <div class="exp-company">RubyGarage — Dnipro, Ukraine</div>
+            <div class="exp-role">Junior Product Designer</div>
+            <div class="exp-desc">Defined design direction for ExpertBox — dashboards, payments, bookings, and video calls. Collaborated with PMs, engineers, clients, and UX writers. Maintained and evolved the design system for product scalability.</div>
+          </div>
+          <span class="exp-badge">2 Yr</span>
+        </div>
+
+        <div class="exp-row reveal">
+          <div class="exp-period">2021 — 2023</div>
+          <div>
+            <div class="exp-company">GetFit &amp; Eat — Personal Project</div>
+            <div class="exp-role">Founder &amp; Designer</div>
+            <div class="exp-desc">Founded and designed a fitness &amp; nutrition app from concept to launch. Led all product decisions, user research, branding, and UI/UX design end-to-end.</div>
+          </div>
+          <span class="exp-badge">Side Project</span>
+        </div>
+
+      </div>
+
+      <!-- Education -->
+      <div class="edu-row reveal" style="margin-top:16px;border-top:none">
+        <span class="edu-name">Alfred Nobel University</span>
+        <span class="edu-meta">Management Faculty · 2017–2021 · Dnipro, Ukraine</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <footer class="page-footer">
+    <div class="container">
+      <h2 class="footer-heading reveal">Let's work<br>together</h2>
+      <a href="mailto:aplakhotin2@gmail.com" class="btn-primary reveal">Get in touch →</a>
+      <div class="footer-links reveal">
+        <a href="https://t.me/andrey_plakhotin" target="_blank" class="footer-link">Telegram ↗</a>
+        <a href="https://dribbble.com/andrey_plakhotin" target="_blank" class="footer-link">Dribbble ↗</a>
+        <a href="mailto:aplakhotin2@gmail.com" class="footer-link">aplakhotin2@gmail.com</a>
+      </div>
+      <div class="footer-bottom reveal">
+        <span>© 2026 Andrii Plakhotin. All rights reserved.</span>
+        <span>Made with <a href="https://claude.ai/code" target="_blank">Claude Code</a> and coffee ☕</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- CUSTOM CURSOR -->
+<div class="curzr" hidden style="box-sizing:border-box;position:fixed;top:-15px;left:-15px;z-index:2147483647;width:30px;height:30px;border-radius:50%;overflow:visible;transition:200ms,transform 2.2ms;user-select:none;pointer-events:none;mix-blend-mode:difference">
+  <svg viewBox="0 0 30 30" width="30" height="30">
+    <defs><filter id="curzr-motion-blur" x="-100%" y="-100%" width="400%" height="400%"><feGaussianBlur class="curzr-motion-blur" in="SourceGraphic" stdDeviation="0,0"/></filter></defs>
+    <circle cx="15" cy="15" r="10" fill="#fff" filter="url(#curzr-motion-blur)"/>
+  </svg>
+</div>
+
+<script>
+// Theme
+(function() {
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 767;
+  function setTheme(t) { root.setAttribute("data-theme", t); if (!isMobile()) localStorage.setItem("portfolio-theme", t); }
+  if (isMobile()) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mq.matches ? "dark" : "light");
+    mq.addEventListener("change", e => setTheme(e.matches ? "dark" : "light"));
+    return;
+  }
+  let cur = root.getAttribute("data-theme") || "dark";
+  document.getElementById("theme-toggle")?.addEventListener("click", () => { cur = cur === "dark" ? "light" : "dark"; setTheme(cur); });
+  window.addEventListener("storage", e => { if (e.key === "portfolio-theme" && e.newValue) { cur = e.newValue; root.setAttribute("data-theme", cur); }});
+})();
+
+// Scroll reveal
+(function() {
+  const els = document.querySelectorAll(".reveal");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }});
+  }, { threshold: 0.07, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(el => obs.observe(el));
+})();
+
+// Page transitions
+document.addEventListener("click", function(e) {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href || a.target === "_blank" || href.startsWith("http") || href.startsWith("#") || href.startsWith("mailto:")) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  document.body.classList.add("page-exiting");
+  setTimeout(() => { window.location.href = href; }, 300);
+});
+
+// Custom cursor
+(function() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const c = document.querySelector(".curzr"); if (c) c.remove(); return;
+  }
+  const el = document.querySelector(".curzr");
+  const blur = document.querySelector(".curzr-motion-blur");
+  if (!el || !blur) return;
+  el.removeAttribute("hidden");
+  document.body.style.cursor = "none";
+  const svg = el.querySelector("svg");
+  if (svg) { svg.style.transition="transform 0.2s cubic-bezier(0.2,0.8,0.2,1)"; svg.style.transformOrigin="center"; }
+  document.body.querySelectorAll("button,a").forEach(n => {
+    n.style.cursor = "none";
+    n.addEventListener("mouseenter", () => { if (svg) svg.style.transform="scale(3)"; });
+    n.addEventListener("mouseleave", () => { if (svg) svg.style.transform="scale(1)"; });
+  });
+  let prev={x:0,y:0}, rot=0, bt;
+  document.onmousemove = e => {
+    const nx=e.pageX+document.body.getBoundingClientRect().x, ny=e.pageY+document.body.getBoundingClientRect().y;
+    const dx=Math.min(Math.max(prev.x-nx,-20),20), dy=Math.min(Math.max(prev.y-ny,-20),20);
+    prev={x:nx,y:ny};
+    el.style.transform=`translate3d(${nx}px,${ny}px,0)`;
+    const angle=Math.atan(Math.abs(dy)/Math.abs(dx))*57.296;
+    if(!isNaN(angle)){if(angle<=45){rot=dx*dy>=0?+angle:-angle;blur.setAttribute("stdDeviation",Math.abs(dx/2)+",0");}else{rot=dx*dy<=0?180-angle:angle;blur.setAttribute("stdDeviation",Math.abs(dy/2)+",0");}}
+    el.style.transform+=` rotate(${rot}deg)`;
+    clearTimeout(bt); bt=setTimeout(()=>blur.setAttribute("stdDeviation","0,0"),50);
+  };
+})();
+</script>
+</body>
+</html>

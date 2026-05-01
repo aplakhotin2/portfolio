@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:stanstef.com)",
+      "Bash(curl -s \"https://stanstef.com/\")",
+      "Bash(curl *)",
+      "Bash(open *)",
+      "Bash(grep *)",
+      "WebFetch(domain:dribbble.com)",
+      "Bash(netlify --version)",
+      "Bash(vercel --version)",
+      "Bash(gh --version)",
+      "Bash(git --version)",
+      "Bash(npm install *)",
+      "Read(//usr/local/bin/**)",
+      "Read(//usr/local/lib/node_modules/.bin/**)",
+      "Read(//usr/local/**)",
+      "Bash(sudo npm *)",
+      "Bash(npm config *)",
+      "Bash(npx surge *)",
+      "Read(//Users/andreyplakhotin/.config/**)",
+      "Read(//Users/andreyplakhotin/**)",
+      "Bash(brew --version)",
+      "Bash(brew install *)",
+      "Bash(wait)",
+      "Bash(/opt/homebrew/bin/netlify --version)",
+      "Bash(/usr/local/bin/netlify --version)",
+      "Bash(brew list *)",
+      "Bash(sudo chmod *)",
+      "Bash(sudo chown *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)"
+    ]
+  }
+}
