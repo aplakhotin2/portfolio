@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en-us" suppresshydrationwarning>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corsair iCUE Case Study | Andrii Plakhotin</title>
+<meta name="description" content="Designing the iCUE desktop and mobile app for Corsair — cross-platform UX across Windows, macOS, and Chrome OS.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme=dark]{
+  color-scheme:dark;
+  --color-bg-primary:#14150d;
+  --color-bg-secondary:#1c1e16;
+  --color-bg-tertiary:#232620;
+  --color-bg-surface:rgba(255,255,255,0.03);
+  --color-bg-surface-hover:rgba(255,255,255,0.06);
+  --color-bg-elevated:#2c3130;
+  --color-accent-warm:#F18A4A;
+  --color-accent-warm-hover:#F4A070;
+  --color-text-primary:#e8e3d8;
+  --color-text-secondary:#a8a398;
+  --color-text-tertiary:#6e6b63;
+  --color-text-inverse:#14150d;
+  --color-border:rgba(255,255,255,0.08);
+  --color-border-hover:rgba(255,255,255,0.15);
+  --color-success:#8a9e8f;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.5);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.6);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --color-bg-primary:#f2f0e8;
+  --color-bg-secondary:#f9f7f1;
+  --color-bg-tertiary:#e8e5dc;
+  --color-bg-surface:rgba(0,0,0,0.025);
+  --color-bg-surface-hover:rgba(0,0,0,0.05);
+  --color-bg-elevated:#fdfcf9;
+  --color-accent-warm:#1a1a14;
+  --color-accent-warm-hover:#2e2e20;
+  --color-text-primary:#1a1b14;
+  --color-text-secondary:#524f45;
+  --color-text-tertiary:#7a7670;
+  --color-text-inverse:#f9f7f1;
+  --color-border:rgba(0,0,0,0.08);
+  --color-border-hover:rgba(0,0,0,0.15);
+  --color-success:#5e8464;
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.09);
+  --shadow-xl:0 16px 50px rgba(0,0,0,0.11);
+}
+:root{
+  --font:'Inter',system-ui,sans-serif;
+  --font-mono:'Inter',system-ui,sans-serif;
+  --nav-height:72px;
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
+  --duration-fast:150ms;
+  --duration-slower:800ms;
+  --text-xs:clamp(0.7rem,0.65rem + 0.2vw,0.8rem);
+  --text-sm:clamp(0.8rem,0.75rem + 0.25vw,0.9rem);
+  --text-base:clamp(0.9rem,0.85rem + 0.4vw,1.0625rem);
+  --text-lg:clamp(1rem,0.9rem + 0.5vw,1.2rem);
+  --text-xl:clamp(1.2rem,1rem + 0.8vw,1.5rem);
+  --text-2xl:clamp(1.5rem,1.2rem + 1.2vw,2rem);
+  --text-3xl:clamp(2rem,1.5rem + 2vw,3rem);
+  --text-4xl:clamp(2.5rem,1.8rem + 3vw,4rem);
+  --weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+  --leading-tight:1.1;--leading-snug:1.25;--leading-normal:1.5;--leading-relaxed:1.7;
+  --tracking-wide:0.05em;--tracking-wider:0.1em;
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+  --radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-xl:32px;--radius-full:9999px;
+}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font);font-size:var(--text-base);line-height:var(--leading-normal);color:var(--color-text-primary);background:var(--color-bg-primary);transition:background .5s,color .5s;display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ── HEADER: LOGO + NAV ── */
+.home-logo{position:fixed;top:28px;left:40px;z-index:1000;display:flex;align-items:center;padding:12px 20px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.home-logo:hover{border-color:var(--color-border-hover);box-shadow:var(--shadow-xl)}
+.navbar__logo-svg{height:32px;width:auto;color:var(--color-text-primary)}
+.nav-cluster{position:fixed;top:28px;right:28px;z-index:1000;display:flex;align-items:center;gap:10px}
+.navbar-pill{position:static;display:flex;align-items:center;padding:12px 20px 12px 12px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--shadow-lg);transition:border-color var(--duration-fast)}
+.navbar-pill:hover{border-color:var(--color-border-hover)}
+.navbar-pill__links{display:flex;align-items:center;gap:20px}
+.navbar-pill__link{font-size:14px;font-weight:500;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;transition:color var(--duration-fast)}
+.navbar-pill__link:hover{color:var(--color-text-primary)}
+.navbar-pill__contact{font-size:14px;font-weight:600;color:var(--color-text-inverse);background:var(--color-accent-warm);padding:8px 16px;border-radius:9999px;letter-spacing:0.05em;text-transform:uppercase;transition:background var(--duration-fast),transform var(--duration-fast)}
+.navbar-pill__contact:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9999px;background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text-secondary);cursor:pointer;transition:border-color var(--duration-fast),background var(--duration-fast),color var(--duration-fast)}
+.theme-toggle:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);color:var(--color-text-primary)}
+.theme-toggle__icon{width:18px;height:18px}
+.theme-toggle__icon--sun{display:block}
+.theme-toggle__icon--moon{display:none}
+[data-theme=light] .theme-toggle__icon--sun{display:none}
+[data-theme=light] .theme-toggle__icon--moon{display:block}
+
+/* ── LAYOUT ── */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px}
+main{padding-top:var(--nav-height);flex:1}
+
+/* ── PROJECT DETAIL HEADER ── */
+.project-detail__header{padding:var(--space-16) 0 var(--space-10)}
+.project-detail__category{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-accent-warm);text-transform:uppercase;letter-spacing:var(--tracking-wider);margin-bottom:var(--space-4)}
+.project-detail__title{font-family:var(--font);font-size:var(--text-4xl);font-weight:var(--weight-bold);line-height:var(--leading-tight);color:var(--color-text-primary);margin-bottom:var(--space-4)}
+.project-detail__tagline{font-size:var(--text-xl);color:var(--color-text-secondary);margin-bottom:var(--space-8);line-height:var(--leading-relaxed)}
+.project-detail__meta{display:flex;gap:var(--space-8);padding:var(--space-6) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);flex-wrap:wrap}
+.project-detail__meta-item{display:flex;flex-direction:column;gap:var(--space-1)}
+.project-detail__meta-label{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wider)}
+.project-detail__meta-value{font-size:var(--text-sm);color:var(--color-text-primary);font-weight:var(--weight-medium)}
+
+/* ── TAGS ── */
+.project-card__tags{display:flex;flex-wrap:wrap;gap:var(--space-2);padding:var(--space-8) 0 0}
+.project-card__tag{font-size:var(--text-xs);color:var(--color-text-tertiary);background:var(--color-bg-surface);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);border:1px solid var(--color-border);transition:border-color var(--duration-fast),color var(--duration-fast)}
+
+/* ── ARTICLE CONTENT ── */
+.project-detail__content{max-width:800px;margin:var(--space-12) auto;font-size:var(--text-lg);color:var(--color-text-secondary);line-height:var(--leading-relaxed);overflow:visible}
+.project-detail__content h2{font-family:var(--font);font-size:var(--text-2xl);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin:var(--space-10) 0 var(--space-4)}
+.project-detail__content p+p{margin-top:var(--space-4)}
+.project-detail__content ul,.project-detail__content ol{list-style:disc;padding-left:var(--space-6);margin:var(--space-4) 0}
+.project-detail__content li{margin-bottom:var(--space-2)}
+.project-detail__content strong{color:var(--color-text-primary);font-weight:var(--weight-semibold)}
+.project-detail__content hr{border:none;border-top:1px solid var(--color-border);margin:var(--space-10) 0;opacity:0;transform:scaleX(0);transform-origin:left;transition:opacity .6s var(--ease-out-expo),transform .8s var(--ease-out-expo)}
+.project-detail__content hr.visible{opacity:1;transform:scaleX(1)}
+
+/* ── OVERVIEW META ── */
+.overview-meta{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-8) 0;padding:var(--space-6) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+.overview-meta .meta-item{display:flex;flex-direction:column;gap:4px}
+.overview-meta .meta-label{font-size:var(--text-sm);font-weight:var(--weight-semibold);text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary);opacity:.7}
+.overview-meta .meta-value{font-size:var(--text-base);color:var(--color-text-primary);line-height:var(--leading-relaxed)}
+
+/* ── FIGURE / IMAGE BLOCKS ── */
+.project-detail__content figure{
+  display:block;
+  width:calc(100vw - 80px);
+  margin-left:calc(-1 * (100vw - 80px - 100%) / 2);
+  border-radius:16px;
+  margin-top:48px;
+  margin-bottom:48px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo);
+}
+.project-detail__content figure.visible{opacity:1;transform:translateY(0)}
+
+/* ── IMAGE GRID ── */
+.image-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  width:calc(100% + 200px);
+  max-width:calc(100vw - 80px);
+  margin-left:-100px;
+  margin-top:40px;
+  margin-bottom:40px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo);
+}
+.image-grid.visible{opacity:1;transform:translateY(0)}
+.image-grid figure{width:100%;margin:0;border-radius:12px;opacity:1;transform:none;transition:none}
+
+/* ── OUTCOMES GRID ── */
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-border);border:1px solid var(--color-border);border-radius:16px;overflow:hidden;margin:var(--space-8) 0}
+.outcome-cell{padding:var(--space-8);background:var(--color-bg-secondary)}
+.outcome-number{font-size:clamp(48px,6vw,72px);font-weight:800;letter-spacing:-0.04em;color:var(--color-text-primary);line-height:1;margin-bottom:var(--space-2)}
+.outcome-label{font-size:var(--text-sm);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
+.outcome-desc{font-size:var(--text-sm);color:var(--color-text-tertiary);line-height:var(--leading-relaxed)}
+
+/* ── KEY RESULTS CALLOUT ── */
+.callout{background:var(--color-bg-secondary);border:1px solid var(--color-border);border-left:3px solid var(--color-accent-warm);border-radius:var(--radius-md);padding:var(--space-6) var(--space-8);margin:var(--space-6) 0}
+.callout__title{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-3)}
+
+/* ── PROCESS STEPS ── */
+.process-steps{display:flex;flex-direction:column;gap:0;margin:var(--space-6) 0}
+.process-step{display:grid;grid-template-columns:160px 1fr;gap:var(--space-8);padding:var(--space-6) 0;border-bottom:1px solid var(--color-border)}
+.process-step:first-child{border-top:1px solid var(--color-border)}
+.process-step__num{font-size:var(--text-xs);font-weight:var(--weight-semibold);color:var(--color-text-tertiary);letter-spacing:var(--tracking-wider);text-transform:uppercase;padding-top:4px}
+.process-step__text{font-size:var(--text-base);color:var(--color-text-secondary);line-height:var(--leading-relaxed)}
+.process-step__title{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
+
+/* ── PROJECT NAV ── */
+.project-detail__nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);padding:var(--space-12) 0;border-top:1px solid var(--color-border)}
+.project-detail__nav-link{padding:var(--space-6);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:border-color var(--duration-fast),transform var(--duration-fast)}
+.project-detail__nav-link:hover{border-color:var(--color-border-hover);transform:translateY(-2px)}
+.project-detail__nav-label{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wider);margin-bottom:var(--space-2);display:block}
+.project-detail__nav-title{font-family:var(--font);font-size:var(--text-lg);font-weight:var(--weight-semibold);color:var(--color-text-primary)}
+.project-detail__nav-link--next{text-align:right}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out-expo),transform .7s var(--ease-out-expo)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:80ms}
+.reveal-delay-2{transition-delay:160ms}
+
+/* ── PAGE TRANSITION ── */
+@keyframes slide-in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slide-out{from{opacity:1}to{opacity:0;transform:translateX(-20px)}}
+main{animation:slide-in .5s cubic-bezier(.16,1,.3,1) both}
+body.page-exiting main{animation:slide-out .3s ease forwards}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .project-detail__content figure,.image-grid{width:calc(100vw - 80px);margin-left:calc(-1 * (100vw - 80px - 100%) / 2)}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .home-logo{top:12px;left:20px;padding:8px 14px}
+  .nav-cluster{top:12px;right:16px}
+  .navbar-pill{padding:8px 12px 8px 8px}
+  .navbar-pill__links{gap:8px}
+  .navbar-pill__link{font-size:12px}
+  .navbar-pill__contact{font-size:12px;padding:6px 12px}
+  .theme-toggle{display:none}
+  .project-detail__header{padding:var(--space-8) 0 var(--space-6)}
+  .project-detail__content{margin:var(--space-8) auto;font-size:var(--text-base)}
+  .project-detail__content h2{font-size:var(--text-xl);margin:var(--space-8) 0 var(--space-3)}
+  .overview-meta{grid-template-columns:1fr;gap:var(--space-4)}
+  .outcomes-grid{grid-template-columns:1fr}
+  .image-grid{grid-template-columns:1fr}
+  .process-step{grid-template-columns:1fr;gap:var(--space-2)}
+  .project-detail__nav{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .home-logo{top:10px;left:16px}
+  .nav-cluster{top:10px;right:12px}
+}
+</style>
+<script>(function(){try{var e,t,n,s=window.innerWidth<=767;s?e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":(e=localStorage.getItem("portfolio-theme"),e||(t=new Date,n=t.getHours()+t.getMinutes()/60,e=n>=7.5&&n<18?"light":"dark")),document.documentElement.setAttribute("data-theme",e)}catch{document.documentElement.setAttribute("data-theme","dark")}})()</script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh">
+
+<!-- HOME LOGO -->
+<a href="index.html" class="home-logo" aria-label="Home">
+  <svg class="navbar__logo-svg" viewBox="0 0 127 95" fill="none" aria-hidden="true">
+    <path d="M 6 88 L 30 7 M 54 88 L 30 7 M 16 56 L 44 56" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 68 88 L 68 7 M 68 7 C 68 7 114 7 114 33 C 114 57 68 52 68 52" stroke="currentColor" stroke-width="5.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- NAV CLUSTER -->
+<div class="nav-cluster">
+  <nav class="navbar-pill" aria-label="Main navigation">
+    <div class="navbar-pill__links">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+      <a href="about.html" class="navbar-pill__link">About me</a>
+      <a href="mailto:aplakhotin2@gmail.com" class="navbar-pill__contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<main style="padding-top:var(--nav-height);flex:1">
+<article id="project-content">
+<div class="container">
+
+  <!-- ── HEADER ── -->
+  <div class="project-detail__header reveal">
+    <p class="project-detail__category">Desktop & Mobile / Gaming</p>
+    <h1 class="project-detail__title">Corsair iCUE:<br>Product Design</h1>
+    <p class="project-detail__tagline">Designing the iCUE desktop and mobile app across Windows, macOS, and Chrome OS — leading to a 25% increase in usability scores</p>
+    <div class="project-detail__meta">
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Client</span>
+        <span class="project-detail__meta-value">Corsair</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Role</span>
+        <span class="project-detail__meta-value">Middle Product Designer</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Period</span>
+        <span class="project-detail__meta-value">February 2022 — July 2022</span>
+      </div>
+      <div class="project-detail__meta-item">
+        <span class="project-detail__meta-label">Result</span>
+        <span class="project-detail__meta-value">25% increase in mobile usability scores</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAGS ── -->
+  <div class="project-card__tags reveal reveal-delay-1">
+    <span class="project-card__tag">Product Design</span>
+    <span class="project-card__tag">Desktop App</span>
+    <span class="project-card__tag">Mobile App</span>
+    <span class="project-card__tag">Usability Testing</span>
+    <span class="project-card__tag">Design Systems</span>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="project-detail__content">
+
+    <h2>Overview</h2>
+    <p>Corsair iCUE is a powerful software platform that lets users customize and synchronize RGB lighting, monitor system performance, and fine-tune settings across compatible Corsair devices. It provides deep control over lighting effects, fan speeds, and hardware performance — offering a fully personalized and immersive PC experience.</p>
+    <p>I designed desktop and mobile for the Corsair iCUE app, working across Windows, macOS, and Chrome OS to deliver a consistent, high-quality experience to millions of gaming enthusiasts worldwide.</p>
+
+    <div class="overview-meta">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Middle Product Designer</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Industry</span>
+        <span class="meta-value">Gaming Hardware / Software</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Task</span>
+        <span class="meta-value">UI/UX for iCUE desktop across Windows, macOS, Chrome OS + mobile app redesign</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Result</span>
+        <span class="meta-value">25% increase in usability scores, consistent cross-platform UI</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>My Role</h2>
+    <p>As a <strong>Middle Product Designer</strong> at Corsair, I designed the UI/UX for the iCUE desktop application across Windows, macOS, and Chrome OS, collaborated with usability testing teams, business analysts, QA, and developers to ensure seamless collaboration and successful product delivery.</p>
+
+    <h2>Area of Responsibility</h2>
+    <ul>
+      <li>Designing the UI/UX for the <strong>iCUE desktop application</strong> across Windows, macOS, and Chrome OS.</li>
+      <li>Collaborating with <strong>usability testing teams</strong> to validate and refine design decisions.</li>
+      <li>Collaborated with <strong>design manager</strong>, <strong>business analysts</strong>, <strong>QA</strong>, and <strong>developers</strong>.</li>
+      <li>Improving the <strong>mobile app interface</strong>, which led to a <strong>25% increase in usability scores</strong>.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="callout__title">Key Results</p>
+      <ul>
+        <li>Enhanced the iCUE mobile interface, leading to a <strong>25% increase in usability scores</strong>.</li>
+        <li>Delivered consistent UI/UX across <strong>Windows, macOS, and Chrome OS</strong> platforms.</li>
+        <li>Validated and improved design decisions through collaboration with <strong>usability testing teams</strong>.</li>
+        <li>Streamlined cross-functional collaboration with <strong>design manager</strong>, <strong>BAs</strong>, <strong>QA</strong>, and <strong>developers</strong>, ensuring smooth handoff and implementation.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2>Outcomes</h2>
+
+    <div class="outcomes-grid">
+      <div class="outcome-cell">
+        <div class="outcome-number">25%</div>
+        <div class="outcome-label">Usability Improvement</div>
+        <p class="outcome-desc">Enhanced the iCUE mobile interface through usability testing, leading to a measurable 25% increase in usability scores.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">3</div>
+        <div class="outcome-label">Platforms</div>
+        <p class="outcome-desc">Delivered consistent UI/UX design across Windows, macOS, and Chrome OS — ensuring a unified experience for all users.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">5</div>
+        <div class="outcome-label">Usability Test Users</div>
+        <p class="outcome-desc">Five representative users participated in structured usability tests over video calls, uncovering critical UX issues before launch.</p>
+      </div>
+      <div class="outcome-cell">
+        <div class="outcome-number">6mo</div>
+        <div class="outcome-label">Engagement</div>
+        <p class="outcome-desc">Full product design cycle from discovery through delivery — covering design system, userflows, wireframes, usability testing, and final UI.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Design System</h2>
+    <p>I created a unified design system for iCUE — covering color palette, typography (Open Sans), buttons, and UI components including navigation patterns specific to the desktop app. The design system served as the single source of truth across all platforms.</p>
+
+    <figure>
+      <img src="corsair-img1.png" alt="Corsair iCUE Design System — color palette, typography, components" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+    <hr>
+
+    <h2>Userflow</h2>
+    <p>I created user flows to figure out how real people would use the app — from the time they open it to the time they exit. User flows helped determine the content and functionality that must be on each page, aligning them with users' specific goals.</p>
+    <p>The core flow covered: Installer → Log in / Sign up → Home Page → Device Page → Device Settings.</p>
+
+    <figure>
+      <img src="corsair-img2.png" alt="Corsair iCUE Userflow diagram" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+    <hr>
+
+    <h2>Wireframes</h2>
+    <p>Wireframes and prototypes visualize a user's interactions with an interface. This stage helped review design solutions with project stakeholders, test them before implementation, and quickly make necessary amendments.</p>
+
+    <figure>
+      <img src="corsair-img3.png" alt="Corsair iCUE Wireframes" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+    <hr>
+
+    <h2>Usability Testing</h2>
+    <p>At this stage, our team ran usability testing to determine, analyze, and improve the design and user experience. Five representative users tested it to see how user-friendly the application is. The test was conducted over a video call, where the participants were given a task.</p>
+    <p>Key tasks tested:</p>
+    <ul>
+      <li>Move multiple devices from one room to another</li>
+      <li>Sign up into the application</li>
+    </ul>
+    <p>Based on findings, we improved the multi-device selection flow and added a verification confirmation screen on sign-up — giving users confidence that everything was completed correctly.</p>
+
+    <figure>
+      <img src="corsair-img4.png" alt="Corsair iCUE Usability Testing results" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+    <hr>
+
+    <h2>Final UI</h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">Home Page</div>
+        <div>
+          <div class="process-step__title">Desktop and mobile app</div>
+          <div class="process-step__text">The home page gives users a full overview of their connected Corsair devices, scenes, and sensor readings — presented consistently across desktop and mobile.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">Device Page</div>
+        <div>
+          <div class="process-step__title">Desktop app</div>
+          <div class="process-step__text">The device page provides deep control over individual devices — lighting effects per key zone, lighting layers, quick lighting zones, and a visual keyboard preview with real-time RGB preview.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">Setting Page</div>
+        <div>
+          <div class="process-step__title">Desktop app</div>
+          <div class="process-step__text">General and device-specific settings — battery status, brightness, polling rate, power saving mode, angle snapping, and wireless pairing. Designed for clarity across multiple simultaneous connected devices.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">Mobile Apps</div>
+        <div>
+          <div class="process-step__title">iCUE iOS & Android</div>
+          <div class="process-step__text">The mobile app brings iCUE control to iOS and Android — allowing users to manage lighting scenes, rooms, and device settings from their phone. Redesigned for a 25% improvement in usability scores.</div>
+        </div>
+      </div>
+    </div>
+
+    <figure>
+      <img src="corsair-img5.png" alt="Corsair iCUE — Home Page desktop and mobile" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+    <figure>
+      <img src="corsair-img6.png" alt="Corsair iCUE — Mobile Apps iOS and Android" style="width:100%;height:auto;display:block;border-radius:12px">
+    </figure>
+
+  </div><!-- /project-detail__content -->
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="project-detail__nav reveal">
+    <a href="metric-insights.html" class="project-detail__nav-link">
+      <span class="project-detail__nav-label">← Previous</span>
+      <span class="project-detail__nav-title">Metric Insights</span>
+    </a>
+    <a href="about.html" class="project-detail__nav-link project-detail__nav-link--next">
+      <span class="project-detail__nav-label">Learn more →</span>
+      <span class="project-detail__nav-title">About Me</span>
+    </a>
+  </nav>
+
+</div>
+</article>
+</main>
+
+<footer style="padding:3rem 0;border-top:1px solid var(--color-border)">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">© 2026 Andrii Plakhotin. All rights reserved.</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-tertiary)">Made with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--color-text-tertiary);text-decoration:underline;text-underline-offset:2px">Claude Code</a> and coffee ☕</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("pageshow", e => { if (e.persisted) document.body.style.opacity = "1"; });
+
+// Theme toggle
+(function() {
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 767;
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    if (!isMobile()) localStorage.setItem("portfolio-theme", t);
+  }
+  if (isMobile()) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mq.matches ? "dark" : "light");
+    mq.addEventListener("change", e => setTheme(e.matches ? "dark" : "light"));
+    return;
+  }
+  let cur = root.getAttribute("data-theme") || "dark";
+  document.querySelectorAll(".theme-toggle").forEach(btn => {
+    btn.addEventListener("click", () => { cur = cur === "dark" ? "light" : "dark"; setTheme(cur); });
+  });
+  window.addEventListener("storage", e => { if (e.key === "portfolio-theme" && e.newValue) { cur = e.newValue; root.setAttribute("data-theme", cur); } });
+})();
+
+// Scroll reveal
+(function() {
+  const els = document.querySelectorAll(".reveal, .project-detail__content figure, .project-detail__content hr, .image-grid");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(el => io.observe(el));
+})();
+
+// Page transitions
+document.addEventListener("click", function(e) {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href) return;
+  if (a.target === "_blank" || href.startsWith("http") || href.startsWith("#") || href.startsWith("mailto:")) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  document.body.classList.add("page-exiting");
+  setTimeout(() => { window.location.href = href; }, 300);
+});
+</script>
+</body>
+</html>
