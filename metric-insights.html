@@ -137,15 +137,14 @@ main{padding-top:var(--nav-height);flex:1}
 .overview-meta .meta-label{font-size:var(--text-sm);font-weight:var(--weight-semibold);text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary);opacity:.7}
 .overview-meta .meta-value{font-size:var(--text-base);color:var(--color-text-primary);line-height:var(--leading-relaxed)}
 
-/* ── FIGURE / IMAGE BLOCKS (bleed treatment like stanstef) ── */
+/* ── FIGURE / IMAGE BLOCKS ── */
 .project-detail__content figure{
   display:block;
-  width:calc(100% + 200px);
-  max-width:calc(100vw - 80px);
-  margin-left:-100px;
+  width:calc(100vw - 80px);
+  margin-left:calc(-1 * (100vw - 80px - 100%) / 2);
   border-radius:16px;
-  margin-top:40px;
-  margin-bottom:40px;
+  margin-top:48px;
+  margin-bottom:48px;
   overflow:hidden;
   opacity:0;
   transform:translateY(20px);
@@ -220,7 +219,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .project-detail__content figure,.image-grid{width:100%;margin-left:0;max-width:100%}
+  .project-detail__content figure,.image-grid{width:calc(100vw - 80px);margin-left:calc(-1 * (100vw - 80px - 100%) / 2)}
 }
 @media(max-width:768px){
   .container{padding:0 20px}
