@@ -179,6 +179,7 @@ main{padding-top:var(--nav-height);flex:1}
 .clients-ticker-wrap{margin-top:var(--space-16);overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
 .clients-ticker{display:flex;width:max-content;animation:ticker-scroll 20s linear infinite}
 .clients-ticker__strip{height:140px;width:auto;display:block;flex-shrink:0;opacity:0.75}
+[data-theme="dark"] .clients-ticker__strip{filter:invert(1);opacity:0.6}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── USER GROUPS GRID ── */
