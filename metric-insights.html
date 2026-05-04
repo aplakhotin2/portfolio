@@ -188,6 +188,12 @@ main{padding-top:var(--nav-height);flex:1}
 .user-card__name{font-size:var(--text-base);font-weight:var(--weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2)}
 .user-card__desc{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:var(--leading-relaxed)}
 
+/* ── ROLE SPLIT ── */
+.role-split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-6) 0}
+.role-card{padding:var(--space-6) var(--space-6) var(--space-8);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+.role-card__label{font-size:var(--text-sm);font-weight:var(--weight-semibold);text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);opacity:.7;margin-bottom:var(--space-3)}
+.role-card__text{font-size:var(--text-base);color:var(--color-text-primary);line-height:var(--leading-relaxed)}
+
 /* ── CHALLENGES GRID ── */
 .challenges-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin:var(--space-6) 0}
 .challenge-card{padding:var(--space-6);border-top:2px solid var(--color-accent-warm)}
@@ -239,6 +245,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
   .project-detail__content{margin:var(--space-8) auto;font-size:var(--text-base)}
   .project-detail__content h2{font-size:var(--text-xl);margin:var(--space-8) 0 var(--space-3)}
   .overview-meta{grid-template-columns:1fr;gap:var(--space-4)}
+  .role-split{grid-template-columns:1fr}
   .users-grid{grid-template-columns:1fr}
   .challenges-grid{grid-template-columns:1fr}
   .outcomes-grid{grid-template-columns:1fr}
@@ -352,8 +359,16 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
     </div>
 
     <h2>My Role</h2>
-    <p>At Metric Insights, my area of responsibility is leading design for the core platform and internal products. This includes the main BI Portal, homepage, search, data governance, and reporting interfaces used by 100K+ users daily.</p>
-    <p>Beyond design, I serve as <strong>Feature Owner for App Builder</strong> — a no-code platform that enables customers to create their own custom desktop apps. In this role I lead a team of two developers and two QA engineers, owning the full product lifecycle from discovery to delivery.</p>
+    <div class="role-split">
+      <div class="role-card">
+        <div class="role-card__label">Design Lead</div>
+        <p class="role-card__text">Leading design for the core platform and internal products — the main BI Portal, homepage, search, data governance, and reporting interfaces used by 100K+ users daily.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-card__label">Feature Owner — App Builder</div>
+        <p class="role-card__text">Leading a team of two developers and two QA to deliver a no-code solution that enables customers to create their own custom apps.</p>
+      </div>
+    </div>
 
     <hr>
 
