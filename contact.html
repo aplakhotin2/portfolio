@@ -89,51 +89,51 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [data-theme=light] .theme-toggle__icon--moon{display:block}
 
 /* ── LAYOUT ── */
-.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
-main{padding-top:var(--nav-height);flex:1}
+main{display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - var(--nav-height));padding-top:var(--nav-height)}
+.contact-wrap{width:100%;max-width:520px;margin:0 auto;padding:0 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
 
 /* ── HERO ── */
-.contact-hero{padding:96px 0 64px}
-.contact-hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-warm);margin-bottom:20px}
-.contact-hero__heading{font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--color-text-primary);margin-bottom:24px}
-.contact-hero__sub{font-size:18px;color:var(--color-text-secondary);line-height:1.7;max-width:520px}
+.contact-hero{padding:0 0 28px}
+.contact-hero__eyebrow{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-warm);margin-bottom:12px}
+.contact-hero__heading{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--color-text-primary);margin-bottom:14px}
+.contact-hero__sub{font-size:15px;color:var(--color-text-secondary);line-height:1.65;max-width:380px}
 
-/* ── CHANNEL CARDS ── */
-.contact-channels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:64px 0}
-.channel-card{display:flex;align-items:center;gap:20px;padding:28px 32px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:20px;transition:border-color var(--duration-fast),background var(--duration-fast),transform var(--duration-fast);text-decoration:none}
-.channel-card:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);transform:translateY(-2px)}
-.channel-card__icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.channel-card__icon--tg{background:rgba(41,182,246,0.12);color:#29b6f6}
-.channel-card__icon--li{background:rgba(10,102,194,0.12);color:#0a66c2}
+/* ── CHANNEL PILLS ── */
+.contact-channels{display:flex;gap:10px;margin:24px 0;justify-content:center;flex-wrap:wrap}
+.channel-card{display:inline-flex;align-items:center;gap:9px;padding:9px 16px 9px 10px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:9999px;transition:border-color var(--duration-fast),background var(--duration-fast),transform var(--duration-fast);text-decoration:none}
+.channel-card:hover{border-color:var(--color-border-hover);background:var(--color-bg-surface-hover);transform:translateY(-1px)}
+.channel-card__icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.channel-card__icon--tg{background:rgba(41,182,246,0.15);color:#29b6f6}
+.channel-card__icon--li{background:rgba(10,102,194,0.15);color:#0a66c2}
 [data-theme=dark] .channel-card__icon--li{color:#4fa3e0}
-.channel-card__icon svg{width:24px;height:24px}
-.channel-card__label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:4px}
-.channel-card__handle{font-size:17px;font-weight:600;color:var(--color-text-primary)}
-.channel-card__arrow{margin-left:auto;font-size:18px;color:var(--color-text-tertiary);transition:transform var(--duration-fast),color var(--duration-fast)}
-.channel-card:hover .channel-card__arrow{transform:translate(3px,-3px);color:var(--color-text-primary)}
+.channel-card__icon svg{width:13px;height:13px}
+.channel-card__label{display:none}
+.channel-card__handle{font-size:13px;font-weight:600;color:var(--color-text-primary)}
+.channel-card__arrow{font-size:12px;color:var(--color-text-tertiary);transition:transform var(--duration-fast),color var(--duration-fast);margin-left:2px}
+.channel-card:hover .channel-card__arrow{transform:translate(2px,-2px);color:var(--color-text-primary)}
 
 /* ── DIVIDER ── */
-.contact-divider{display:flex;align-items:center;gap:16px;margin:64px 0 48px;color:var(--color-text-tertiary);font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.contact-divider{display:flex;align-items:center;gap:14px;margin:20px 0;width:100%;color:var(--color-text-tertiary);font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
 .contact-divider::before,.contact-divider::after{content:'';flex:1;height:1px;background:var(--color-border)}
 
 /* ── FORM ── */
-.contact-form{max-width:640px;margin-bottom:96px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.form-label{font-size:12px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary)}
-.form-input,.form-textarea{width:100%;padding:14px 18px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:12px;font-family:var(--font);font-size:15px;color:var(--color-text-primary);outline:none;transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
+.contact-form{width:100%;margin-bottom:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.form-label{font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary);text-align:left}
+.form-input,.form-textarea{width:100%;padding:11px 14px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:10px;font-family:var(--font);font-size:14px;color:var(--color-text-primary);outline:none;transition:border-color var(--duration-fast),box-shadow var(--duration-fast)}
 .form-input::placeholder,.form-textarea::placeholder{color:var(--color-text-tertiary)}
 .form-input:focus,.form-textarea:focus{border-color:var(--color-accent-warm);box-shadow:0 0 0 3px rgba(241,138,74,0.12)}
-.form-textarea{resize:vertical;min-height:160px;line-height:1.6}
-.form-submit{display:inline-flex;align-items:center;gap:10px;background:var(--color-accent-warm);color:#fff;font-family:var(--font);font-size:15px;font-weight:600;letter-spacing:0.02em;padding:16px 32px;border-radius:9999px;border:none;cursor:pointer;transition:background var(--duration-fast),transform var(--duration-fast)}
+.form-textarea{resize:vertical;min-height:96px;line-height:1.6}
+.form-submit{display:inline-flex;align-items:center;gap:8px;background:var(--color-accent-warm);color:#fff;font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:0.02em;padding:13px 28px;border-radius:9999px;border:none;cursor:pointer;transition:background var(--duration-fast),transform var(--duration-fast)}
 .form-submit:hover{background:var(--color-accent-warm-hover);transform:translateY(-1px)}
 
 /* ── FOOTER ── */
-.page-footer{padding:48px 0;border-top:1px solid var(--color-border)}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:32px}
-.footer-link{font-size:13px;color:var(--color-text-secondary);transition:color var(--duration-fast)}
+.page-footer{padding:20px 0;margin-top:auto}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
+.footer-link{font-size:12px;color:var(--color-text-tertiary);transition:color var(--duration-fast)}
 .footer-link:hover{color:var(--color-text-primary)}
-.footer-bottom{padding-top:20px;border-top:1px solid var(--color-border);display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-tertiary);flex-wrap:wrap;gap:8px}
+.footer-bottom{text-align:center;font-size:11px;color:var(--color-text-tertiary)}
 .footer-bottom a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 
 /* ── REVEAL ── */
@@ -151,7 +151,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  .container{padding:0 20px}
+  .contact-wrap{padding:0 20px}
   .home-logo{top:12px;left:20px;padding:8px 14px}
   .nav-cluster{top:12px;right:16px}
   .navbar-pill{padding:8px 12px 8px 8px}
@@ -159,10 +159,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
   .navbar-pill__link{font-size:12px}
   .navbar-pill__contact{font-size:12px;padding:6px 12px}
   .theme-toggle{display:none}
-  .contact-hero{padding:72px 0 48px}
-  .contact-channels{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column}
 }
 @media(max-width:480px){
   .home-logo{top:10px;left:16px}
@@ -202,7 +199,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 </div>
 
 <main>
-  <div class="container">
+  <div class="contact-wrap">
 
     <!-- HERO -->
     <section class="contact-hero">
@@ -211,35 +208,29 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
       <p class="contact-hero__sub reveal reveal-delay-2">I'm open to senior and lead product design roles, as well as freelance projects. Drop me a message — I usually reply within 24 hours.</p>
     </section>
 
-    <!-- CHANNEL CARDS -->
-    <div class="contact-channels">
-      <a href="https://t.me/andrey_plakhotin99" target="_blank" class="channel-card reveal">
+    <!-- CHANNEL PILLS -->
+    <div class="contact-channels reveal reveal-delay-2">
+      <a href="https://t.me/andrey_plakhotin99" target="_blank" class="channel-card">
         <div class="channel-card__icon channel-card__icon--tg">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1 0 24 12 12 12 0 0 0 11.944 0zm6.17 7.265-2.065 9.72c-.155.692-.563.862-1.14.536l-3.154-2.322-1.522 1.464c-.168.168-.309.309-.634.309l.226-3.2 5.83-5.266c.253-.226-.055-.352-.393-.126L7.63 13.627l-3.11-.972c-.676-.21-.69-.676.14-.999l12.174-4.692c.563-.204 1.055.126.88.999l.002.302z"/></svg>
         </div>
-        <div>
-          <div class="channel-card__label">Telegram</div>
-          <div class="channel-card__handle">@andrey_plakhotin99</div>
-        </div>
+        <div class="channel-card__handle">@andrey_plakhotin99</div>
         <span class="channel-card__arrow">↗</span>
       </a>
-      <a href="https://www.linkedin.com/in/andrii-plakhotin-813a45199/" target="_blank" class="channel-card reveal reveal-delay-1">
+      <a href="https://www.linkedin.com/in/andrii-plakhotin-813a45199/" target="_blank" class="channel-card">
         <div class="channel-card__icon channel-card__icon--li">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </div>
-        <div>
-          <div class="channel-card__label">LinkedIn</div>
-          <div class="channel-card__handle">Andrii Plakhotin</div>
-        </div>
+        <div class="channel-card__handle">Andrii Plakhotin</div>
         <span class="channel-card__arrow">↗</span>
       </a>
     </div>
 
     <!-- DIVIDER -->
-    <div class="contact-divider reveal">or send a message</div>
+    <div class="contact-divider reveal reveal-delay-3">or send a message</div>
 
     <!-- FORM -->
-    <form class="contact-form reveal" action="https://formsubmit.co/aplakhotin2@gmail.com" method="POST">
+    <form class="contact-form reveal reveal-delay-3" action="https://formsubmit.co/aplakhotin2@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New message from portfolio">
       <input type="hidden" name="_next" value="https://portfolio-aplakhotin2.vercel.app/contact">
       <input type="hidden" name="_captcha" value="false">
@@ -268,17 +259,8 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 
   <!-- FOOTER -->
   <footer class="page-footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="https://t.me/andrey_plakhotin99" target="_blank" class="footer-link">Telegram ↗</a>
-        <a href="https://www.linkedin.com/in/andrii-plakhotin-813a45199/" target="_blank" class="footer-link">LinkedIn ↗</a>
-        <a href="https://dribbble.com/andrey_plakhotin" target="_blank" class="footer-link">Dribbble ↗</a>
-        <a href="mailto:aplakhotin2@gmail.com" class="footer-link">aplakhotin2@gmail.com</a>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Andrii Plakhotin. All rights reserved.</span>
-        <span>Made with <a href="https://claude.ai/code" target="_blank">Claude Code</a> and coffee ☕</span>
-      </div>
+    <div class="footer-bottom">
+      <span>© 2026 Andrii Plakhotin · Made with <a href="https://claude.ai/code" target="_blank">Claude Code</a> ☕</span>
     </div>
   </footer>
 
