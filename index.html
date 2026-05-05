@@ -333,7 +333,7 @@ body.page-exiting main{animation:page-slide-out .35s cubic-bezier(.55,0,1,.45) f
         <a href="metric-insights.html" class="stack-card" aria-label="Metric Insights" style="--card-color:#EEF2FF">
           <div class="project-card--stack">
             <div class="project-card--stack__image-wrap">
-              <img src="mi-img1.png" alt="Metric Insights dashboard" class="project-card--stack__image">
+              <img src="mi-scene.png" alt="Metric Insights dashboard" class="project-card--stack__image">
             </div>
             <div class="project-card--stack__footer">
               <h3 class="project-card--stack__title">Metric Insights</h3>
@@ -585,7 +585,14 @@ body.page-exiting main{animation:page-slide-out .35s cubic-bezier(.55,0,1,.45) f
 })();
 
 // ── THEME TOGGLE ──
-window.addEventListener("pageshow", e => { if (e.persisted) { document.body.style.transition=""; document.body.style.opacity="1"; }});
+window.addEventListener("pageshow", e => {
+  if (e.persisted) {
+    document.body.style.transition = "";
+    document.body.style.opacity = "1";
+    document.body.classList.remove("page-transitioning", "page-exiting");
+    document.querySelectorAll(".stack-card").forEach(c => c.classList.remove("is-flipping"));
+  }
+});
 (function() {
   const root = document.documentElement;
   const isMobile = () => window.innerWidth <= 767;
@@ -647,14 +654,15 @@ window.addEventListener("pageshow", e => { if (e.persisted) { document.body.styl
     {xPct:51, yPct:53},
   ];
 
+  requestAnimationFrame(function() {
   cards.forEach((card, idx) => {
     const pos = positions[idx % positions.length];
     const rot = rots[idx % rots.length];
     card.style.transition = "none";
     const cw = card.offsetWidth || 400;
     const ch = card.offsetHeight || 460;
-    const maxX = window.innerWidth - cw - 40;
-    const maxY = window.innerHeight - ch - 40;
+    const maxX = Math.max(40, window.innerWidth - cw - 40);
+    const maxY = Math.max(40, window.innerHeight - ch - 40);
     let x = Math.round(pos.xPct / 100 * window.innerWidth);
     let y = Math.round(pos.yPct / 100 * window.innerHeight);
     x = Math.max(40, Math.min(x, maxX));
@@ -734,6 +742,7 @@ window.addEventListener("pageshow", e => { if (e.persisted) { document.body.styl
       }
     });
   });
+  }); // requestAnimationFrame
 })();
 
 // ── PAGE TRANSITIONS (internal links) ──
