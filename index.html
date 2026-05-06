@@ -638,7 +638,11 @@ window.addEventListener("pageshow", e => {
     document.body.style.transition = "";
     document.body.style.opacity = "1";
     document.body.classList.remove("page-transitioning", "page-exiting");
-    document.querySelectorAll(".stack-card").forEach(c => c.classList.remove("is-flipping"));
+    document.querySelectorAll(".stack-card").forEach(c => {
+      c.classList.remove("is-flipping");
+      c.style.transition = "";
+      c.style.transform = `rotate(${c.dataset.rot || 0}deg)`;
+    });
   }
 });
 (function() {
@@ -702,7 +706,8 @@ window.addEventListener("pageshow", e => {
     {xPct:64, yPct:14},
   ];
 
-  requestAnimationFrame(function() {
+  requestAnimationFrame(function tryPlace() {
+  if (!window.innerWidth || !window.innerHeight) { requestAnimationFrame(tryPlace); return; }
   cards.forEach((card, idx) => {
     const pos = positions[idx % positions.length];
     const rot = rots[idx % rots.length];
