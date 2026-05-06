@@ -698,8 +698,8 @@ window.addEventListener("pageshow", e => {
     [rots[i], rots[j]] = [rots[j], rots[i]];
   }
   const positions = [
-    {xPct:5,  yPct:48},
-    {xPct:27, yPct:44},
+    {xPct:5,  yPct:48, yPx:24},
+    {xPct:27, yPct:44, yPx:24},
     {xPct:50, yPct:52},
     {xPct:74, yPct:54},
     {xPct:40, yPct:11},
@@ -717,7 +717,7 @@ window.addEventListener("pageshow", e => {
     const maxX = Math.max(40, window.innerWidth - cw - 40);
     const maxY = Math.max(40, window.innerHeight - ch - 40);
     let x = Math.round(pos.xPct / 100 * window.innerWidth);
-    let y = Math.round(pos.yPct / 100 * window.innerHeight);
+    let y = Math.round(pos.yPct / 100 * window.innerHeight) + (pos.yPx || 0);
     x = Math.max(40, Math.min(x, maxX));
     y = Math.max(40, Math.min(y, maxY));
     card.style.left = x + "px";
