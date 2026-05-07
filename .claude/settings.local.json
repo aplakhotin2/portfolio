@@ -36,7 +36,9 @@
       "Bash(git push *)",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('login:', d.get\\('login'\\), 'name:', d.get\\('name'\\)\\)\")",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('name:', d.get\\('name'\\), 'private:', d.get\\('private'\\), 'permissions:', d.get\\('permissions'\\)\\)\")",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(git -C /Users/andreyplakhotin/dev/portfolio log --oneline --diff-filter=A -- \"corsair-img*.png\")",
+      "Bash(git *)"
     ]
   }
 }
