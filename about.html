@@ -138,6 +138,19 @@ main{padding-top:var(--nav-height);flex:1}
 .edu-name{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--color-text-primary)}
 .edu-meta{font-size:14px;color:var(--color-text-tertiary)}
 
+/* ── RECOMMENDATIONS ── */
+.rec-grid{margin-top:var(--space-8,2rem)}
+.rec-card{display:flex;flex-direction:column;gap:16px;padding:28px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:16px;text-decoration:none;transition:border-color 150ms,transform 150ms}
+.rec-card:hover{border-color:var(--color-border-hover);transform:translateY(-2px)}
+.rec-card__header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.rec-card__name{font-size:16px;font-weight:700;color:var(--color-text-primary);margin-bottom:4px}
+.rec-card__role{font-size:13px;color:var(--color-text-secondary);line-height:1.4}
+.rec-card__date{font-size:12px;color:var(--color-text-tertiary);margin-top:6px;letter-spacing:0.04em}
+.rec-card__icon{width:20px;height:20px;color:var(--color-text-tertiary);flex-shrink:0;margin-top:2px}
+.rec-card__quote{font-size:14px;color:var(--color-text-secondary);line-height:1.65;border-left:2px solid var(--color-border);padding-left:14px;margin:0;font-style:italic}
+.rec-card__cta{font-size:13px;font-weight:600;color:var(--color-accent-warm);margin-top:auto}
+@media(max-width:640px){.rec-grid{grid-template-columns:1fr!important}}
+
 /* ── FOOTER ── */
 .page-footer{padding:80px 0;border-top:1px solid var(--color-border)}
 .footer-heading{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--color-text-primary);margin-bottom:24px}
@@ -360,6 +373,44 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
       <div class="edu-row reveal" style="margin-top:16px;border-top:none">
         <span class="edu-name">Alfred Nobel University</span>
         <span class="edu-meta">Management Faculty · 2017–2021 · Dnipro, Ukraine</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-heading reveal">
+        <h2 class="section-heading__title">Recommendations</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="rec-grid reveal">
+
+        <a href="recommendation-anna-kostiaieva.pdf" target="_blank" rel="noopener" class="rec-card">
+          <div class="rec-card__header">
+            <div>
+              <div class="rec-card__name">Anna Kostiaieva</div>
+              <div class="rec-card__role">Lead UI/UX Designer · Developex</div>
+              <div class="rec-card__date">July 2022</div>
+            </div>
+            <svg class="rec-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <blockquote class="rec-card__quote">"Andrii has a thoughtful analytical mindset and likes to get to the root of user problems. His design solutions are inventive and creative… his fresh ideas have been a really valuable asset to the team."</blockquote>
+          <span class="rec-card__cta">View letter →</span>
+        </a>
+
+        <a href="recommendation-oleksiy-sinyaschok.pdf" target="_blank" rel="noopener" class="rec-card">
+          <div class="rec-card__header">
+            <div>
+              <div class="rec-card__name">Oleksiy Sinyaschok</div>
+              <div class="rec-card__role">Director of Design · Developex</div>
+              <div class="rec-card__date">July 2022</div>
+            </div>
+            <svg class="rec-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <blockquote class="rec-card__quote">"Andrii could always figure out how to implement complicated or non-standard functionality in the most convenient way, using an elegant and clean design."</blockquote>
+          <span class="rec-card__cta">View letter →</span>
+        </a>
+
       </div>
     </div>
   </section>
