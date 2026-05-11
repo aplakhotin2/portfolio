@@ -200,8 +200,7 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 }
 .design-cycle-grid.visible{opacity:1;transform:translateY(0)}
 .design-cycle-grid figure{margin:0;border-radius:12px;overflow:hidden}
-.design-cycle-grid figure.full{grid-column:1/-1}
-.design-cycle-grid figure img{width:100%;height:auto;display:block}
+.design-cycle-grid figure img{width:100%;height:320px;display:block;object-fit:cover;object-position:top}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
@@ -354,13 +353,16 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
 
     <div class="design-cycle-grid">
       <figure>
-        <img src="getfit-jtbd.jpg" alt="JTBD analysis — impact/effort matrix and circular diagram">
-      </figure>
-      <figure>
         <img src="getfit-survey.jpg" alt="Survey analysis — sticky note findings on notification, motivation, design, and functions">
       </figure>
-      <figure class="full">
+      <figure>
         <img src="getfit-userflow.jpg" alt="User flow — full app screen map from sign in to profile">
+      </figure>
+      <figure>
+        <img src="getfit-mindmap.jpg" alt="Mindmap — app information architecture">
+      </figure>
+      <figure>
+        <img src="getfit-jtbd.jpg" alt="JTBD analysis — impact/effort matrix and circular diagram">
       </figure>
     </div>
 
