@@ -184,9 +184,29 @@ main{padding-top:var(--nav-height);flex:1}
 main{animation:slide-in .5s cubic-bezier(.16,1,.3,1) both}
 body.page-exiting main{animation:slide-out .3s ease forwards}
 
+/* ── DESIGN CYCLE GRID ── */
+.design-cycle-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:12px;
+  width:calc(100vw - 80px);
+  margin-left:calc(-1 * (100vw - 80px - 100%) / 2);
+  margin-top:32px;
+  margin-bottom:48px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease-out-expo),transform .6s var(--ease-out-expo);
+}
+.design-cycle-grid.visible{opacity:1;transform:translateY(0)}
+.design-cycle-grid figure{margin:0;border-radius:12px;overflow:hidden}
+.design-cycle-grid figure.full{grid-column:1/-1}
+.design-cycle-grid figure img{width:100%;height:auto;display:block}
+
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
   .project-detail__content figure{width:calc(100vw - 80px);margin-left:calc(-1 * (100vw - 80px - 100%) / 2)}
+  .design-cycle-grid{width:calc(100vw - 80px);margin-left:calc(-1 * (100vw - 80px - 100%) / 2)}
 }
 @media(max-width:768px){
   .container{padding:0 16px}
@@ -204,6 +224,8 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
   .project-detail__content figure{width:100%;margin-left:0}
   .process-step{grid-template-columns:1fr;gap:var(--space-2)}
   .project-detail__nav{grid-template-columns:1fr}
+  .design-cycle-grid{grid-template-columns:1fr;width:100%;margin-left:0}
+  .design-cycle-grid figure.full{grid-column:1}
 }
 @media(max-width:480px){
   .home-logo{top:10px;left:16px}
@@ -328,6 +350,20 @@ body.page-exiting main{animation:slide-out .3s ease forwards}
       </div>
     </div>
 
+    <h2>Design Cycle</h2>
+
+    <div class="design-cycle-grid">
+      <figure>
+        <img src="getfit-jtbd.jpg" alt="JTBD analysis — impact/effort matrix and circular diagram">
+      </figure>
+      <figure>
+        <img src="getfit-survey.jpg" alt="Survey analysis — sticky note findings on notification, motivation, design, and functions">
+      </figure>
+      <figure class="full">
+        <img src="getfit-userflow.jpg" alt="User flow — full app screen map from sign in to profile">
+      </figure>
+    </div>
+
     <figure>
       <img src="getfit-screens.webp" alt="Get fit &amp; Eat — full screen overview" style="width:100%;height:auto;display:block;border-radius:12px">
     </figure>
@@ -418,7 +454,7 @@ window.addEventListener("pageshow", e => { if (e.persisted) document.body.style.
 
 // Scroll reveal
 (function() {
-  const els = document.querySelectorAll(".reveal, .project-detail__content figure");
+  const els = document.querySelectorAll(".reveal, .project-detail__content figure, .design-cycle-grid");
   if (!els.length) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
